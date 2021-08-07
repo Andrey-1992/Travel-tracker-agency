@@ -5,3 +5,18 @@ $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,1
 body {
   background: $primary-background;
 }
+
+header {
+  border: solid black 2px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.agency-logo {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.log-out-section {
+  grid-column-start: 3;
+  grid-column-end: 4;
+}
