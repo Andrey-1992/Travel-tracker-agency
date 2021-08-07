@@ -35,7 +35,7 @@ describe('Traveler', function() {
 
   it('should store the address of the user', function() {
 
-    expect(coolTraveler.travelerType).to.equal('thrill-seeker');
+    expect(coolTraveler.travelerType).to.be.an('string');
   });
 
 });
