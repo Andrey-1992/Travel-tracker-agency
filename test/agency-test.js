@@ -2,9 +2,6 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Agency from '../src/classes/Agency';
-// import travelers from '../src/data/traveler-data';
-// import trips from '../src/data/trip-data';
-// import destinations from '../src/data/destination-data';
 
 describe('Agency', () => {
   let coolAgency;

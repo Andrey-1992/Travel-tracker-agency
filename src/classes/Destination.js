@@ -1,5 +1,5 @@
 class Destination {
-  constructor(destinationInfo) {
+  constructor(destinationInfo, agencyData) {
     this.id = destinationInfo.id;
     this.destination = destinationInfo.destination;
     this.estimatedLodgingCostPerDay = destinationInfo.estimatedLodgingCostPerDay;

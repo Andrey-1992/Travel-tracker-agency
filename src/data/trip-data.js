@@ -88,7 +88,7 @@ const trips = [
     "travelers": 6,
     "date": "2022/07/23",
     "duration": 17,
-    "status": "approved",
+    "status": "pending",
     "suggestedActivities": []
   }, {
     "id": 11,
@@ -133,7 +133,7 @@ const trips = [
     "travelers": 3,
     "date": "2022/07/04",
     "duration": 6,
-    "status": "approved",
+    "status": "pending",
     "suggestedActivities": []
   }, {
     "id": 16,

@@ -2,12 +2,34 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Destination from '../src/classes/Destination';
+import Trip from '../src/classes/Trip';
+import Traveler from '../src/classes/Traveler';
+import Agency from '../src/classes/Agency';
+import trips from '../src/data/trip-data';
+import travelers from '../src/data/traveler-data';
 import destinations from '../src/data/destination-data';
 
 describe('Destination', () => {
-  let coolDestination;
+  let destinationTest, travelerTest, tripTest, agencyTest;
+
   beforeEach(() =>  {
-    coolDestination = new Destination(destinations.destinations[1])
+    agencyTest = new Agency();
+
+    travelers.travelers.forEach(traveler => {
+      travelerTest = new Traveler(traveler)
+      agencyTest.travelers.push(travelerTest);
+    })
+
+    trips.trips.forEach(trip => {
+      tripTest = new Trip(trip, agencyTest)
+      agencyTest.trips.push(tripTest);
+    })
+
+    destinations.destinations.forEach(destination => {
+      destinationTest = new Destination(destination, agencyTest)
+      agencyTest.destinations.push(destinationTest);
+    })
+
   });
 
   it('should be a function', () => {
@@ -17,37 +39,37 @@ describe('Destination', () => {
 
   it('should be an instance of Destination', () => {
 
-    expect(coolDestination).to.be.an.instanceof(Destination);
+    expect(destinationTest).to.be.an.instanceof(Destination);
   });
 
   it('should store the id of the destination', () => {
 
-    expect(coolDestination.id).to.equal(2);
+    expect(destinationTest.id).to.be.an('number');
   });
 
   it('should store name of the destination', () => {
 
-    expect(coolDestination.destination).to.equal('Stockholm, Sweden');
+    expect(destinationTest.destination).to.be.an('string');
   });
 
   it('should store the estimated cost per day', () => {
 
-    expect(coolDestination.estimatedLodgingCostPerDay).to.deep.equal(100);
+    expect(destinationTest.estimatedLodgingCostPerDay).to.be.an('number');
   });
 
   it('should store the estimated cost per person', () => {
 
-    expect(coolDestination.estimatedFlightCostPerPerson).to.deep.equal(780);
+    expect(destinationTest.estimatedFlightCostPerPerson).to.be.an('number');
   });
 
   it('should store the image url', () => {
 
-    expect(coolDestination.image).to.deep.equal('https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80');
+    expect(destinationTest.image).to.be.an('string');
   });
 
   it('should store the image alterned text', () => {
 
-    expect(coolDestination.alt).to.deep.equal('city with boats on the water during the day time');
+    expect(destinationTest.alt).to.be.an('string');
   });
 
 });

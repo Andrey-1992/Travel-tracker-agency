@@ -4,21 +4,16 @@ const expect = chai.expect;
 import Traveler from '../src/classes/Traveler';
 import Trip from '../src/classes/Trip';
 import Agency from '../src/classes/Agency';
+import Destination from '../src/classes/Destination';
 import trips from '../src/data/trip-data';
 import travelers from '../src/data/traveler-data';
 import destinations from '../src/data/destination-data';
 
 describe('Traveler', () => {
-  let coolTraveler1, coolTraveler2, coolTraveler3, travelerTest, tripTest, agencyTest;
+  let destinationTest, travelerTest, tripTest, agencyTest;
+
   beforeEach(() =>  {
     agencyTest = new Agency();
-    // coolTraveler1 = new Traveler(travelers.travelers[0]);
-    // agencyTest.travelers.push(coolTraveler1);
-    // coolTraveler2 = new Traveler(travelers.travelers[1]);
-    // agencyTest.travelers.push(coolTraveler2);
-    // coolTraveler3 = new Traveler(travelers.travelers[2]);
-    // agencyTest.travelers.push(coolTraveler3);
-
 
     travelers.travelers.forEach(traveler => {
       travelerTest = new Traveler(traveler)
@@ -28,6 +23,11 @@ describe('Traveler', () => {
     trips.trips.forEach(trip => {
       tripTest = new Trip(trip, agencyTest)
       agencyTest.trips.push(tripTest);
+    })
+
+    destinations.destinations.forEach(destination => {
+      destinationTest = new Destination(destination, agencyTest)
+      agencyTest.destinations.push(destinationTest);
     })
 
   });
@@ -59,8 +59,34 @@ describe('Traveler', () => {
 
   it('should keep track of all the trips data', () => {
 
-    // console.log('test updateFunction:', travelerTest.allTripsRecord)
     expect(travelerTest.allTripsRecord).to.be.an('array');
+  });
+
+  it('should return the first name in Upper Case', () => {
+
+    expect(travelerTest.getFirstName()).to.be.an('string');
+  });
+
+  it('should determine what time of the day we are (Morning || Afternoon || Evening)', () => {
+
+    expect(travelerTest.determineTimeOfDay()).to.be.an('string');
+  });
+
+  it('should organize the trips by date based on past / upcoming / pending status', () => {
+
+    travelerTest.findTrips();
+
+    expect(travelerTest.pastTripsRecord.length).to.be.equal(1);
+    expect(travelerTest.upcomingTripsRecord.length).to.be.equal(2);
+    expect(travelerTest.pendingTripsRecord.length).to.be.equal(1);
+  });
+
+  it('should calculate the total spent during this year', () => {
+
+    travelerTest.findTrips();
+    travelerTest.calculateYearTotalSpent(agencyTest);
+
+    expect(travelerTest.yearTotalSpent).to.be.an('number');
   });
 
 });

@@ -1,5 +1,5 @@
 class Agency {
-  constructor(travelersData, tripsData, destinationData) {
+  constructor() {
     this.travelers = [];
     this.trips =  [];
     this.destinations = [];
