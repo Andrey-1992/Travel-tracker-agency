@@ -62,17 +62,22 @@ class Traveler {
 
     const sumTripsCost = this.allTripsRecord.reduce((acc, trip) => {
       destinations.destinations.forEach(destinationInfo => {
-        if (destinationInfo.id === trip.destinationID) {
-          let sumCostPerDay = trip.duration * destinationInfo.estimatedLodgingCostPerDay;
-          let sumCostPerPerson = trip.travelers * destinationInfo.estimatedFlightCostPerPerson;
-          acc += sumCostPerDay + sumCostPerPerson;
+        
+        const tripDate = dayjs(trip.date);
+        if (tripDate.isSame(currentDate, 'year')) {
+          if (destinationInfo.id === trip.destinationID) {
+            let sumCostPerDay = trip.duration * destinationInfo.estimatedLodgingCostPerDay;
+            let sumCostPerPerson = trip.travelers * destinationInfo.estimatedFlightCostPerPerson;
+            acc += sumCostPerDay + sumCostPerPerson;
+          }
         }
       })
 
       return acc;
     }, 0);
-    
+
     console.log(typeof sumTripsCost);
+    return sumTripsCost
   }
 
 }
