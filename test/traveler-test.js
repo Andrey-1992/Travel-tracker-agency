@@ -62,6 +62,16 @@ describe('Traveler', () => {
     expect(travelerTest.allTripsRecord).to.be.an('array');
   });
 
+  it('should return the first name in Upper Case', () => {
+
+    expect(travelerTest.getFirstName()).to.be.an('string');
+  });
+
+  it('should determine what time of the day we are (Morning || Afternoon || Evening)', () => {
+
+    expect(travelerTest.determineTimeOfDay()).to.be.an('string');
+  });
+
   it('should organize the trips by date based on past / upcoming / pending status', () => {
 
     travelerTest.findTrips();
@@ -69,6 +79,14 @@ describe('Traveler', () => {
     expect(travelerTest.pastTripsRecord.length).to.be.equal(1);
     expect(travelerTest.upcomingTripsRecord.length).to.be.equal(2);
     expect(travelerTest.pendingTripsRecord.length).to.be.equal(1);
+  });
+
+  it('should calculate the total spent during this year', () => {
+
+    travelerTest.findTrips();
+    travelerTest.calculateYearTotalSpent(destinations);
+
+    expect(travelerTest.yearTotalSpent).to.be.an('number');
   });
 
 });
