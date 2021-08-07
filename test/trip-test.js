@@ -2,20 +2,12 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Trip from '../src/classes/Trip';
+import trips from '../src/data/trip-data';
 
 describe('Trip', function() {
   let coolTrip;
   beforeEach(() =>  {
-    coolTrip = new Trip({
-      'id': 1,
-      'userID': 44,
-      'destinationID': 49,
-      'travelers': 1,
-      'date': '2022/09/16',
-      'duration': 8,
-      'status': 'approved',
-      'suggestedActivities': []
-    });
+    coolTrip = new Trip(trips.trips[0])
   });
 
   it('should be a function', function() {

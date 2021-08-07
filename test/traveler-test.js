@@ -2,15 +2,12 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Traveler from '../src/classes/Traveler';
+import travelers from '../src/data/traveler-data';
 
 describe('Traveler', function() {
   let coolTraveler;
   beforeEach(() =>  {
-    coolTraveler = new Traveler({
-      'id': 2,
-      'name': 'Rachael Vaughten',
-      'travelerType': 'thrill-seeker'
-    });
+    coolTraveler = new Traveler(travelers.travelers[1])
   });
 
   it('should be a function', function() {
