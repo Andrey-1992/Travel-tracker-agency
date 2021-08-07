@@ -4,19 +4,70 @@ $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,1
 
 body {
   background: $primary-background;
+  margin: 0;
 }
 
+main {
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(15, 1fr);
+  grid-gap: 1%;
+}
+
+
+
+//// Header Section ////////////////////////
 header {
   border: solid black 2px;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  display: grid;
   grid-template-columns: repeat(4, 1fr);
 }
 
 .agency-logo {
+  border: solid black 2px;
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 2;
 }
 
 .log-out-section {
-  grid-column-start: 3;
-  grid-column-end: 4;
+  border: solid black 2px;
+  grid-column-start: 4;
+  grid-column-end: 5;
+}
+
+
+
+/////////////ASIDE SECTION /////////////////////////
+
+aside {
+  border: solid black 2px;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: span 5;
+}
+
+
+/////////////FORM SECTION /////////////////////////
+.trip-form-section {
+  border: solid black 2px;
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 5;
+}
+
+
+
+/////////////TRIPS CARDS SECTION /////////////////////////
+.trips-view-info-section{
+  border: solid black 2px;
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  grid-row-start: 7;
+  grid-row-end: span 9;
 }
