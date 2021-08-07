@@ -59,8 +59,16 @@ describe('Traveler', () => {
 
   it('should keep track of all the trips data', () => {
 
-    // console.log('test updateFunction:', travelerTest.allTripsRecord)
     expect(travelerTest.allTripsRecord).to.be.an('array');
+  });
+
+  it('should organize the trips by date based on past / upcoming / pending status', () => {
+
+    travelerTest.findTrips();
+
+    expect(travelerTest.pastTripsRecord.length).to.be.equal(1);
+    expect(travelerTest.upcomingTripsRecord.length).to.be.equal(2);
+    expect(travelerTest.pendingTripsRecord.length).to.be.equal(1);
   });
 
 });

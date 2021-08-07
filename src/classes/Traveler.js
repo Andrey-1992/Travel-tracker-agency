@@ -19,30 +19,29 @@ class Traveler {
     this.allTripsRecord.unshift(trip);
   }
 
-  updateDestinationsInfo(destination) {
-    this.allDestinationsRecord.unshift(destination);
-  }
+  // updateDestinationsInfo(destination) {
+  //   this.allDestinationsRecord.unshift(destination);
+  // }
 
-  findTrips(destinationsData) {
-    // let customerBookings = destinationsData.filter(booking => booking.userID === this.id);
-    // let today = dayjs()
-    // // .format('YYYY/MM/DD');
-    // // console.log('currentDate', today)
-    //
-    // customerBookings.forEach(booking => {
-    //   let bookingDate = dayjs(booking.date);
-    //   // console.log('testDayJs', bookingDate);
-    //   if(bookingDate.isBefore(today, 'day') && (!this.pastBookings.includes(booking))) {
-    //     this.pastBookings.push(booking);
-    //     // console.log('past', this.pastBookings)
-    //   } else if (bookingDate.isAfter(today, 'day') && (!this.futureBookings.includes(booking))){
-    //     this.futureBookings.push(booking);
-    //     // console.log('ft', this.futureBookings)
-    //   } else if (bookingDate.isSame(today, 'day') && (!this.presentBookings.includes(booking))) {
-    //     this.presentBookings.push(booking);
-    //     // console.log('present', this.presentBookings)
-    //   }
-    // })
+  findTrips() {
+    let currentDate = dayjs().format('YYYY/MM/DD');
+
+    this.allTripsRecord.forEach(trip => {
+      const tripDate = dayjs(trip.date);
+
+      if (trip.status === "pending" && !this.pendingTripsRecord.includes(trip)) {
+        this.pendingTripsRecord.push(trip);
+      }
+      
+      if (tripDate.isBefore(currentDate, 'day') && !this.pastTripsRecord.includes(trip)) {
+        this.pastTripsRecord.push(trip);
+      } else if (tripDate.isSame(currentDate, 'day') && !this.upcomingTripsRecord.includes(trip)) {
+        this.upcomingTripsRecord.push(trip);
+      } else if (tripDate.isAfter(currentDate, 'day') && !this.upcomingTripsRecord.includes(trip)) {
+        this.upcomingTripsRecord.push(trip);
+      }
+    });
+
   }
 }
 
