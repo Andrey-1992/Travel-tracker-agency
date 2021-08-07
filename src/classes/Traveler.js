@@ -1,3 +1,5 @@
+import dayjs from 'dayjs';
+
 class Traveler {
   constructor(travelerInfo) {
     this.id = travelerInfo.id;
@@ -8,7 +10,7 @@ class Traveler {
   getFirstName() {
     return this.name.split(' ')[0].toUpperCase();
   }
-  
+
   updateTripInfo(trip) {
     this.allTripsRecord.unshift(trip);
   }
