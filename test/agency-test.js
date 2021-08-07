@@ -2,14 +2,14 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Agency from '../src/classes/Agency';
-import travelers from '../src/data/traveler-data';
-import trips from '../src/data/trip-data';
-import destinations from '../src/data/destination-data';
+// import travelers from '../src/data/traveler-data';
+// import trips from '../src/data/trip-data';
+// import destinations from '../src/data/destination-data';
 
 describe('Agency', () => {
   let coolAgency;
   beforeEach(() =>  {
-    coolAgency = new Agency(travelers.travelers, trips.trips, destinations.destinations);
+    coolAgency = new Agency();
   });
 
   it('should be a function', () => {
@@ -24,17 +24,17 @@ describe('Agency', () => {
 
   it('should store all the travelers data', () => {
 
-    expect(coolAgency.travelersData).to.be.an('array');
+    expect(coolAgency.travelers).to.be.an('array');
   });
 
   it('should store all the trips data', () => {
 
-    expect(coolAgency.tripsData).to.be.an('array');
+    expect(coolAgency.trips).to.be.an('array');
   });
 
   it('should store all the destinations data', () => {
 
-    expect(coolAgency.destinationData).to.be.an('array');
+    expect(coolAgency.destinations).to.be.an('array');
   });
 
 });

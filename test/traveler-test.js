@@ -2,12 +2,34 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Traveler from '../src/classes/Traveler';
+import Trip from '../src/classes/Trip';
+import Agency from '../src/classes/Agency';
+import trips from '../src/data/trip-data';
 import travelers from '../src/data/traveler-data';
+import destinations from '../src/data/destination-data';
 
 describe('Traveler', () => {
-  let coolTraveler;
+  let coolTraveler1, coolTraveler2, coolTraveler3, travelerTest, tripTest, agencyTest;
   beforeEach(() =>  {
-    coolTraveler = new Traveler(travelers.travelers[1])
+    agencyTest = new Agency();
+    // coolTraveler1 = new Traveler(travelers.travelers[0]);
+    // agencyTest.travelers.push(coolTraveler1);
+    // coolTraveler2 = new Traveler(travelers.travelers[1]);
+    // agencyTest.travelers.push(coolTraveler2);
+    // coolTraveler3 = new Traveler(travelers.travelers[2]);
+    // agencyTest.travelers.push(coolTraveler3);
+
+
+    travelers.travelers.forEach(traveler => {
+      travelerTest = new Traveler(traveler)
+      agencyTest.travelers.push(travelerTest);
+    })
+
+    trips.trips.forEach(trip => {
+      tripTest = new Trip(trip, agencyTest)
+      agencyTest.trips.push(tripTest);
+    })
+
   });
 
   it('should be a function', () => {
@@ -17,22 +39,28 @@ describe('Traveler', () => {
 
   it('should be an instance of Traveler', () => {
 
-    expect(coolTraveler).to.be.an.instanceof(Traveler);
+    expect(travelerTest).to.be.an.instanceof(Traveler);
   });
 
   it('should store the id of the traveler', () => {
 
-    expect(coolTraveler.id).to.equal(2);
+    expect(travelerTest.id).to.be.an("number");
   });
 
   it('should store the name of the traveler', () => {
 
-    expect(coolTraveler.name).to.equal('Rachael Vaughten');
+    expect(travelerTest.name).to.be.an('string');
   });
 
   it('should store the type of traveler', () => {
 
-    expect(coolTraveler.travelerType).to.be.an('string');
+    expect(travelerTest.travelerType).to.be.an('string');
+  });
+
+  it('should keep track of all the trips data', () => {
+
+    // console.log('test updateFunction:', travelerTest.allTripsRecord)
+    expect(travelerTest.allTripsRecord).to.be.an('array');
   });
 
 });

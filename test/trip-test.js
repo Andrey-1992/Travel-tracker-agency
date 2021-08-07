@@ -2,12 +2,27 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import Trip from '../src/classes/Trip';
+import Traveler from '../src/classes/Traveler';
+import Agency from '../src/classes/Agency';
 import trips from '../src/data/trip-data';
+import travelers from '../src/data/traveler-data';
+import destinations from '../src/data/destination-data';
 
 describe('Trip', () => {
-  let coolTrip;
+  let travelerTest, tripTest, agencyTest;
   beforeEach(() =>  {
-    coolTrip = new Trip(trips.trips[0])
+    // coolTrip = new Trip(trips.trips[0], travelers);
+    agencyTest = new Agency();
+
+    travelers.travelers.forEach(traveler => {
+      travelerTest = new Traveler(traveler)
+      agencyTest.travelers.push(travelerTest);
+    })
+
+    trips.trips.forEach(trip => {
+      tripTest = new Trip(trip, agencyTest)
+      agencyTest.trips.push(tripTest);
+    })
   });
 
   it('should be a function', () => {
@@ -17,47 +32,47 @@ describe('Trip', () => {
 
   it('should be an instance of Trip', () => {
 
-    expect(coolTrip).to.be.an.instanceof(Trip);
+    expect(tripTest).to.be.an.instanceof(Trip);
   });
 
   it('should store the id of the trip', () => {
 
-    expect(coolTrip.id).to.equal(1);
+    expect(tripTest.id).to.be.an('number');
   });
 
   it('should store the id of the traveler', () => {
 
-    expect(coolTrip.userID).to.equal(44);
+    expect(tripTest.userID).to.be.an('number');
   });
 
   it('should store the id of the destination', () => {
 
-    expect(coolTrip.destinationID).to.equal(49);
+    expect(tripTest.destinationID).to.be.an('number');
   });
 
   it('should store how many travelers are in the trip', () => {
 
-    expect(coolTrip.travelers).to.equal(1);
+    expect(tripTest.travelers).to.be.an('number');
   });
 
   it('should store the date of the trip', () => {
 
-    expect(coolTrip.date).to.equal('2022/09/16');
+    expect(tripTest.date).to.be.an('string');
   });
 
   it('should store the duration of the trip', () => {
 
-    expect(coolTrip.duration).to.equal(8);
+    expect(tripTest.duration).to.be.an('number');
   });
 
   it('should store the status of the trip', () => {
 
-    expect(coolTrip.status).to.equal('approved');
+    expect(tripTest.status).to.be.an('string');
   });
 
   it('should store the suggested activities for the trip', () => {
 
-    expect(coolTrip.suggestedActivities).to.be.an('array');
+    expect(tripTest.suggestedActivities).to.be.an('array');
   });
 
 });
