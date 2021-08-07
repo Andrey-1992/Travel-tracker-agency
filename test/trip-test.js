@@ -11,7 +11,6 @@ import destinations from '../src/data/destination-data';
 describe('Trip', () => {
   let travelerTest, tripTest, agencyTest;
   beforeEach(() =>  {
-    // coolTrip = new Trip(trips.trips[0], travelers);
     agencyTest = new Agency();
 
     travelers.travelers.forEach(traveler => {

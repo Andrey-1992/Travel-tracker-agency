@@ -33,19 +33,15 @@ class Traveler {
    return 'Good Evening, '
  }
 
-  // updateDestinationsInfo(destination) {
-  //   this.allDestinationsRecord.unshift(destination);
-  // }
-
   findTrips() {
     let currentDate = dayjs().format('YYYY/MM/DD');
 
     this.allTripsRecord.forEach(trip => {
-      const tripDate = dayjs(trip.date);
-
       if (trip.status === "pending" && !this.pendingTripsRecord.includes(trip)) {
         this.pendingTripsRecord.push(trip);
       }
+
+      const tripDate = dayjs(trip.date);
 
       if (tripDate.isBefore(currentDate, 'day') && !this.pastTripsRecord.includes(trip)) {
         this.pastTripsRecord.push(trip);
@@ -62,7 +58,7 @@ class Traveler {
 
     const sumTripsCost = this.allTripsRecord.reduce((acc, trip) => {
       destinations.destinations.forEach(destinationInfo => {
-        
+
         const tripDate = dayjs(trip.date);
         if (tripDate.isSame(currentDate, 'year')) {
           if (destinationInfo.id === trip.destinationID) {
@@ -76,7 +72,6 @@ class Traveler {
       return acc;
     }, 0);
 
-    console.log(typeof sumTripsCost);
     return sumTripsCost
   }
 

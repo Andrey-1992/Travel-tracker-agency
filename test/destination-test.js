@@ -10,28 +10,25 @@ import travelers from '../src/data/traveler-data';
 import destinations from '../src/data/destination-data';
 
 describe('Destination', () => {
-  let coolDestination;
-  // let destinationTest, travelerTest, tripTest, agencyTest;
+  let destinationTest, travelerTest, tripTest, agencyTest;
+
   beforeEach(() =>  {
-    coolDestination = new Destination(destinations.destinations[1])
-    //
-    // agencyTest = new Agency();
-    //
-    // travelers.travelers.forEach(traveler => {
-    //   travelerTest = new Traveler(traveler)
-    //   agencyTest.travelers.push(travelerTest);
-    //   console.log(agencyTest.travelers)
-    // })
-    //
-    // trips.trips.forEach(trip => {
-    //   tripTest = new Trip(trip, agencyTest)
-    //   agencyTest.trips.push(tripTest);
-    // })
-    //
-    // destinations.destinations.forEach(destination => {
-    //   destinationTest = new Trip(destination, agencyTest)
-    //   agencyTest.destinations.push(tripTest);
-    // })
+    agencyTest = new Agency();
+
+    travelers.travelers.forEach(traveler => {
+      travelerTest = new Traveler(traveler)
+      agencyTest.travelers.push(travelerTest);
+    })
+
+    trips.trips.forEach(trip => {
+      tripTest = new Trip(trip, agencyTest)
+      agencyTest.trips.push(tripTest);
+    })
+
+    destinations.destinations.forEach(destination => {
+      destinationTest = new Destination(destination, agencyTest)
+      agencyTest.destinations.push(destinationTest);
+    })
 
   });
 
@@ -42,37 +39,37 @@ describe('Destination', () => {
 
   it('should be an instance of Destination', () => {
 
-    expect(coolDestination).to.be.an.instanceof(Destination);
+    expect(destinationTest).to.be.an.instanceof(Destination);
   });
 
   it('should store the id of the destination', () => {
 
-    expect(coolDestination.id).to.be.an('number');
+    expect(destinationTest.id).to.be.an('number');
   });
 
   it('should store name of the destination', () => {
 
-    expect(coolDestination.destination).to.be.an('string');
+    expect(destinationTest.destination).to.be.an('string');
   });
 
   it('should store the estimated cost per day', () => {
 
-    expect(coolDestination.estimatedLodgingCostPerDay).to.be.an('number');
+    expect(destinationTest.estimatedLodgingCostPerDay).to.be.an('number');
   });
 
   it('should store the estimated cost per person', () => {
 
-    expect(coolDestination.estimatedFlightCostPerPerson).to.be.an('number');
+    expect(destinationTest.estimatedFlightCostPerPerson).to.be.an('number');
   });
 
   it('should store the image url', () => {
 
-    expect(coolDestination.image).to.be.an('string');
+    expect(destinationTest.image).to.be.an('string');
   });
 
   it('should store the image alterned text', () => {
 
-    expect(coolDestination.alt).to.be.an('string');
+    expect(destinationTest.alt).to.be.an('string');
   });
 
 });

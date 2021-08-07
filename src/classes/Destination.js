@@ -7,10 +7,6 @@ class Destination {
     this.image = destinationInfo.image;
     this.alt = destinationInfo.alt;
   }
-  matchDestination(agencyData) {
-    agencyData.travelers.find((traveler) =>
-    traveler.id === this.userID).updateTripInfo(this);
-  }
 }
 
 export default Destination;
