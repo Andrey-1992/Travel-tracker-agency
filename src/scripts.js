@@ -22,6 +22,9 @@ import dayjs from 'dayjs';
 
 ///--------------- Queries Section -----------------------------///
 const logOutBtn = document.getElementById('logOutBtn');
+const pastTripsBtn = document.getElementById('pastTripsBtn');
+const upcomingTripsBtn = document.getElementById('upcomingTripsBtn');
+const pendingTripsBtn = document.getElementById('pendingTripsBtn');
 const submitFormBtn = document.getElementById('submitFormBtn');
 
 
@@ -33,11 +36,15 @@ const planningDate = document.getElementById('planningDate');
 const planningNoDays = document.getElementById('planningNoDays');
 const planningNoTravelers = document.getElementById('planningNoTravelers');
 const destinationDropdown = document.getElementById('destinationDropdown');
-console.log(destinationDropdown.value);
+// console.log(pendingTripsBtn);
 
 
 ///--------------- Event Listeners -----------------------------///
-
+logOutBtn.addEventListener('click', returnLogView);
+pastTripsBtn.addEventListener('click', showPastTripsView);
+upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
+pendingTripsBtn.addEventListener('click', showPendingTripsView);
+submitFormBtn.addEventListener('click', submitTripForm);
 
 
 
