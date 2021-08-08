@@ -30,6 +30,7 @@ const pendingTripsBtn = document.getElementById('pendingTripsBtn');
 const submitFormBtn = document.getElementById('submitFormBtn');
 
 
+const travelerInfoSectionView = document.getElementById('travelerGreeting');
 const travelerGreeting = document.getElementById('travelerGreeting');
 const totalSpentInfo = document.getElementById('totalSpentInfo');
 const planningCost = document.getElementById('planningCost');
@@ -44,6 +45,7 @@ const destinationDropdown = document.getElementById('destinationDropdown');
 
 
 ///--------------- Event Listeners -----------------------------///
+window.addEventListener("load", fetchAgencyData());
 // logOutBtn.addEventListener('click', returnLogView);
 // pastTripsBtn.addEventListener('click', showPastTripsView);
 // upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
@@ -56,6 +58,7 @@ const destinationDropdown = document.getElementById('destinationDropdown');
 ///--------------- Functions -----------------------------///
 let agencyRepo = new Agency();
 let currentDate = dayjs().format('YYYY/MM/DD');
+let currentTraveler;
 // console.log(agencyRepo)
 // console.log(currentDate)
 
@@ -67,4 +70,53 @@ function fetchAgencyData() {
   Promise.all([travelerInfo, tripsInfo, destinationsInfo])
     .then(data => initializedData(data[0], data[1], data[2]))
     .catch(err => console.error(err))
+}
+
+function initializedData(travelerData, tripsData, destinationsData) {
+  Promise.resolve(intializeTravelerData(travelerData))
+  .then(storeAgencyData(tripsData, destinationsData))
+  .then(updatePageInfo());
+}
+
+function intializeTravelerData(travelerData) {
+  travelerData.travelers.forEach(traveler => {
+    let travelerInfo = new Traveler(traveler)
+    agencyRepo.travelers.push(travelerInfo);
+  })
+}
+
+function storeAgencyData (tripsData, destinationsData) {
+  tripsData.trips.forEach(trip => {
+    let tripInfo = new Trip(trip, agencyRepo)
+    agencyRepo.trips.push(tripInfo);
+  })
+
+  destinationsData.destinations.forEach(destination => {
+    let destinationInfo = new Destination(destination, agencyRepo)
+    agencyRepo.destinations.push(destinationInfo);
+  })
+}
+
+function updatePageInfo() {
+  // Here is where I pass the value of the log in, and select that user !
+  currentTraveler = agencyRepo.travelers[48];
+  updateTravelerInfo(currentTraveler);
+}
+
+function updateTravelerInfo(currentTraveler) {
+  currentTraveler.findTrips();
+
+  const greetTraveler = currentTraveler.greetForTraveler();
+  domUpdates.displayTravelerInfo(greetTraveler, travelerGreeting);
+
+  const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
+  domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
+
+  let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
+  let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
+  let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
+
+  console.log('traveler PAST trips:', travelerPastTripsInfo)
+  console.log('traveler UPCOMING trips:', travelerUpcomingTripsInfo)
+  console.log('traveler PENDING trips:', travelerPendingTripsInfo)
 }

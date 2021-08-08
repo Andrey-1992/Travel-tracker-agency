@@ -17,10 +17,10 @@ class Traveler {
   }
 
   getFirstName() {
-    return this.name.split(' ')[0].toUpperCase();
+    return this.name.split(' ')[0];
   }
 
-  determineTimeOfDay () {
+  determineTimeOfDay() {
    let time = new Date();
    let hour = time.getHours();
 
@@ -31,6 +31,10 @@ class Traveler {
      return 'Good Afternoon, '
    }
    return 'Good Evening, '
+ }
+
+ greetForTraveler() {
+   return `${this.determineTimeOfDay()} ${this.getFirstName()}!`
  }
 
   findTrips() {
