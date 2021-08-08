@@ -7,10 +7,73 @@
   <title>Webpack Starter Kit</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
-  
+  <!-- <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px"> -->
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
+  <main>
+    <header>
+      <section class="agency-logo">
+        <img class="logo-img" src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+        <h1>ravel Agency</h1>
+      </section>
+      <section class="log-out-section">
+        <button type="button" class="log-out-btn">Log out</button>
+        <p class="agency-slogan">"A vacation is a sunburn at premium prices"</p>
+      </section>
+      <!-- <p>header</p> -->
+    </header>
 
+    <aside>
+      <h2>Greeting Traveler !</h2>
+      <h4 class="total-spent-info">This year you have spent a total of: $</h4>
+      <section class="trips-views-btns">
+        <button type="button" class="past-trips-btn">Past Trips</button>
+        <button type="button" class="upcoming-trips-btn">Upcoming Trips</button>
+        <button type="button" class="pending-trips-btn">Pending Trips</button>
+      </section>
+    </aside>
+
+    <article class="trip-form-section">
+      <section class="from-instructions">
+        <h2 class="instructions-header-text">Plan a trip !</h2>
+      </section>
+      <section class="form-fill">
+        <p class="planning-text">Please select a destination and a  date to submit a new trip:</p>
+        <form class="planning-form" method="post">
+            <div class="form-planning-inputs">
+              <div class="date-form-section">
+                <label for="planning-date">Start Date</label>
+                <input class="planning-date" type="date" name="start-date" value="" required>
+              </div>
+              <div class="destination-form-section">
+                <label for="planning-destination">Travel Destination</label>
+                <select class="planning-dropdown" name="Destination">
+                  <option value="0" selected>Select a Destination</option>
+                </select>
+              </div>
+              <div class="days-form-section">
+                <label for="planning-duration"># Days</label>
+                <select class="planning-dropdown" name="Days" value="Number"></select>
+              </div>
+              <div class="persons-form-section">
+                <label for="planning-travelers"># Travelers</label>
+                <select class="planning-dropdown" name="Travelers"></select>
+              </div>
+              <div class="planning-bottom">
+                <p></p>
+                <button class="submit-form-btn" form="planning-form" type="button" name="button">Add Trips</button>
+              </div>
+            </div>
+          </form>
+          <h4 class="planning-cost">Estimated Cost: $0.00</h4>
+      <section>
+    </article>
+
+    <article class="trips-view-info-section">
+      <p>info cards</p>
+    </article>
+
+  </main>
+
+  <script src="bundle.js"></script>
 </body>
 </html>
