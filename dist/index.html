@@ -34,11 +34,38 @@
 
     <article class="trip-form-section">
       <section class="from-instructions">
+        <h2 class="instructions-header-text">Plan a trip !</h2>
       </section>
       <section class="form-fill">
+        <p class="planning-text">Please select a destination and a  date to submit a new trip:</p>
+        <form class="planning-form" method="post">
+            <div class="form-planning-inputs">
+              <div class="date-form-section">
+                <label for="planning-date">Start Date</label>
+                <input class="planning-date" type="date" name="start-date" value="" required>
+              </div>
+              <div class="destination-form-section">
+                <label for="planning-destination">Travel Destination</label>
+                <select class="planning-dropdown" name="Destination">
+                  <option value="0" selected>Select a Destination</option>
+                </select>
+              </div>
+              <div class="days-form-section">
+                <label for="planning-duration"># Days</label>
+                <select class="planning-dropdown" name="Days" value="Number"></select>
+              </div>
+              <div class="persons-form-section">
+                <label for="planning-travelers"># Travelers</label>
+                <select class="planning-dropdown" name="Travelers"></select>
+              </div>
+              <div class="planning-bottom">
+                <p></p>
+                <button class="submit-form-btn" form="planning-form" type="button" name="button">Add Trips</button>
+              </div>
+            </div>
+          </form>
+          <h4 class="planning-cost">Estimated Cost: $0.00</h4>
       <section>
-      <section class="cost-submit-form">
-      </section>
     </article>
 
     <article class="trips-view-info-section">
