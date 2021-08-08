@@ -20,6 +20,8 @@ import domUpdates from './domUpdates';
 import dayjs from 'dayjs';
 
 
+
+
 ///--------------- Queries Section -----------------------------///
 const logOutBtn = document.getElementById('logOutBtn');
 const pastTripsBtn = document.getElementById('pastTripsBtn');
@@ -39,13 +41,30 @@ const destinationDropdown = document.getElementById('destinationDropdown');
 // console.log(pendingTripsBtn);
 
 
+
+
 ///--------------- Event Listeners -----------------------------///
-logOutBtn.addEventListener('click', returnLogView);
-pastTripsBtn.addEventListener('click', showPastTripsView);
-upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
-pendingTripsBtn.addEventListener('click', showPendingTripsView);
-submitFormBtn.addEventListener('click', submitTripForm);
+// logOutBtn.addEventListener('click', returnLogView);
+// pastTripsBtn.addEventListener('click', showPastTripsView);
+// upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
+// pendingTripsBtn.addEventListener('click', showPendingTripsView);
+// submitFormBtn.addEventListener('click', submitTripForm);
+
 
 
 
 ///--------------- Functions -----------------------------///
+let agencyRepo = new Agency();
+let currentDate = dayjs().format('YYYY/MM/DD');
+// console.log(agencyRepo)
+// console.log(currentDate)
+
+function fetchAgencyData() {
+  const travelerInfo = fetchCalls.getData('travelers');
+  const tripsInfo = fetchCalls.getData('trips');
+  const destinationsInfo = fetchCalls.getData('destinations');
+
+  Promise.all([travelerInfo, tripsInfo, destinationsInfo])
+    .then(data => initializedData(data[0], data[1], data[2]))
+    .catch(err => console.error(err))
+}
