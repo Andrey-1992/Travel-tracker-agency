@@ -141,7 +141,7 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[6];
+  currentTraveler = agencyRepo.travelers[47];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
@@ -191,7 +191,7 @@ function updateTravelerInfo(currentTraveler) {
 
 function submitTripForm() {
 
-  // preventDefault();
+  preventDefault();
 
   calculateTripCost();
 

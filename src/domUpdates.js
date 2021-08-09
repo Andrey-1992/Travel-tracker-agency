@@ -7,7 +7,7 @@ const domUpdates = {
 
   displayTripsCardsInfo(tripData, destinationData, tripDomSection, agencyDestinationsRepo) {
     tripDomSection.innerHTML = '';
-    console.log(agencyDestinationsRepo.destinations);
+    // console.log(agencyDestinationsRepo.destinations);
 
     // let glider = new Glide(tripDomSection)
     // new Glide(document.querySelector('.glide')).mount()
@@ -24,7 +24,7 @@ const domUpdates = {
             findDest = dest;
           }
         })
-
+        // tripDomSection.innerHTML = '';
           //// Glide & Grid Code --------------------------->>
           tripDomSection.insertAdjacentHTML('afterbegin',
           `
