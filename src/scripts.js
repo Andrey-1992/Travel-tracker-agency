@@ -30,10 +30,15 @@ const pendingTripsBtn = document.getElementById('pendingTripsBtn');
 const submitFormBtn = document.getElementById('submitFormBtn');
 
 
-const travelerInfoSectionView = document.getElementById('travelerGreeting');
 const travelerGreeting = document.getElementById('travelerGreeting');
 const totalSpentInfo = document.getElementById('totalSpentInfo');
 const planningCost = document.getElementById('planningCost');
+
+const travelerInfoSectionView = document.getElementById('travelerGreeting');
+const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
+const pastTripsView = document.getElementById('pastTripsView');
+const upcomingTripsView = document.getElementById('upcomingTripsView');
+const pendingTripsView = document.getElementById('pendingTripsView');
 
 const planningDate = document.getElementById('planningDate');
 const planningNoDays = document.getElementById('planningNoDays');
@@ -61,6 +66,18 @@ let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
 // console.log(agencyRepo)
 // console.log(currentDate)
+
+function preventDefault() {
+  event.preventDefault()
+}
+
+function show(element) {
+  element.classList.remove('hidden');
+}
+
+function hide(element) {
+  element.classList.add('hidden');
+}
 
 function fetchAgencyData() {
   const travelerInfo = fetchCalls.getData('travelers');
@@ -99,12 +116,13 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[48];
+  currentTraveler = agencyRepo.travelers[46];
   updateTravelerInfo(currentTraveler);
 }
 
 function updateTravelerInfo(currentTraveler) {
   currentTraveler.findTrips();
+  currentTraveler.matchDestinationsAndTrips(agencyRepo);
 
   const greetTraveler = currentTraveler.greetForTraveler();
   domUpdates.displayTravelerInfo(greetTraveler, travelerGreeting);
@@ -113,10 +131,19 @@ function updateTravelerInfo(currentTraveler) {
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
-  let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
-  let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
+  let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
+  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
 
-  console.log('traveler PAST trips:', travelerPastTripsInfo)
-  console.log('traveler UPCOMING trips:', travelerUpcomingTripsInfo)
-  console.log('traveler PENDING trips:', travelerPendingTripsInfo)
+  let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
+  let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
+  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
+
+  let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
+  let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
+  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+
+  // console.log('traveler PAST destinations:', currentTraveler.pastDestinationsRecord)
+  // console.log('traveler PAST trips:', travelerPastTripsInfo)
+  // console.log('traveler UPCOMING trips:', travelerUpcomingTripsInfo)
+  // console.log('traveler PENDING trips:', travelerPendingTripsInfo)
 }

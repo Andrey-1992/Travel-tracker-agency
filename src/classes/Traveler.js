@@ -7,8 +7,11 @@ class Traveler {
     this.travelerType = travelerInfo.travelerType;
     this.allTripsRecord = [];
     this.pastTripsRecord = [];
+    this.pastDestinationsRecord = [];
     this.upcomingTripsRecord = [];
+    this.upcomingDestinationsRecord = [];
     this.pendingTripsRecord = [];
+    this.pendingDestinationsRecord = [];
     this.allDestinationsRecord = [];
     this.yearTotalSpent = 0;
   }
@@ -77,6 +80,36 @@ class Traveler {
     }, 0);
 
     return sumTripsCost
+  }
+
+  matchDestinationsAndTrips(destinations) {
+    if (this.pastTripsRecord.length) {
+      this.pastTripsRecord.forEach(tripInfo => {
+        destinations.destinations.forEach(destinationInfo => {
+          if (tripInfo.destinationID === destinationInfo.id) {
+            this.pastDestinationsRecord.push(destinationInfo)
+          }
+        })
+      })
+    }
+    if (this.upcomingTripsRecord.length) {
+      this.upcomingTripsRecord.forEach(tripInfo => {
+        destinations.destinations.forEach(destinationInfo => {
+          if (tripInfo.destinationID === destinationInfo.id) {
+            this.upcomingDestinationsRecord.push(destinationInfo)
+          }
+        })
+      })
+    }
+    if (this.pendingTripsRecord.length) {
+      this.pendingTripsRecord.forEach(tripInfo => {
+        destinations.destinations.forEach(destinationInfo => {
+          if (tripInfo.destinationID === destinationInfo.id) {
+            this.pendingDestinationsRecord.push(destinationInfo)
+          }
+        })
+      })
+    }
   }
 
 }
