@@ -47,6 +47,8 @@ const planningNoTravelers = document.getElementById('planningNoTravelers');
 const destinationDropdown = document.getElementById('destinationDropdown');
 // console.log(pendingTripsBtn);
 
+const glideTest = document.querySelector('.glide__slide');
+
 
 
 
@@ -153,9 +155,13 @@ function updateTravelerInfo(currentTraveler) {
   const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
+  // new Glide('.glide').mount()
+  new Glide(document.querySelector('.glide')).mount()
+
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
+  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, glideTest);
+  // domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
@@ -164,6 +170,7 @@ function updateTravelerInfo(currentTraveler) {
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+
 
   // console.log('traveler PAST destinations:', currentTraveler.pastDestinationsRecord)
   // console.log('traveler PAST trips:', travelerPastTripsInfo)
