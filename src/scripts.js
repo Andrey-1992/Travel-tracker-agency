@@ -237,6 +237,8 @@ function submitTripForm() {
     suggestedActivities: []
   }
   console.log(postTripObj);
+
+  fetchCalls.postNewData('trips', postTripObj);
 }
 
 function findDestinationInfo() {

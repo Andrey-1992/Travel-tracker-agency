@@ -28,6 +28,7 @@ const fetchCalls = {
   },
 
   displayErrorMessage(error, endPoint) {
+    console.log(error);
     // const postErrorActivity = document.querySelector(".post-error-activity");
     // const errorField = document.querySelector('.js-error');
     //
