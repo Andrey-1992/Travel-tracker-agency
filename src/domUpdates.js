@@ -5,18 +5,30 @@ const domUpdates = {
     travelerDomSection.innerText = travelerText;
   },
 
-  displayTripsCardsInfo(tripData, destinationData, tripDomSection) {
+  displayTripsCardsInfo(tripData, destinationData, tripDomSection, agencyDestinationsRepo) {
     tripDomSection.innerHTML = '';
+    // console.log(agencyDestinationsRepo.destinations);
+
     // let glider = new Glide(tripDomSection)
     // new Glide(document.querySelector('.glide')).mount()
     // let glider = new Glide(document.querySelector('.carousel-list'))
     // console.log(glider)
-    if (tripData.length) {
-      return tripData.forEach(tripInfo => {
-        destinationData.forEach(destinationInfo => {
 
+    if (tripData.length) {
+      tripData.forEach(tripInfo => {
+        // destinationData.forEach(destinationInfo => {
+        // tripDomSection.innerHTML = '';
+
+        let findDest ;
+        agencyDestinationsRepo.destinations.forEach(dest => {
+
+          if (dest.id === tripInfo.destinationID) {
+            findDest = dest;
+          }
+        })
           //// Glide & Grid Code --------------------------->>
-          tripDomSection.insertAdjacentHTML('afterbegin',
+          // tripDomSection.insertAdjacentHTML('afterbegin',
+          tripDomSection.innerHTML +=
           `
           <div class="trips-cards">
 
@@ -26,16 +38,16 @@ const domUpdates = {
 
             <div class="carousel-list">
               <div class="carousel-item">
-                <img src="${destinationInfo.image}" alt="${destinationInfo.alt}" width="150" height="150">
-                <h4>${destinationInfo.destination}</h4>
+                <img src="${findDest.image}" alt="${findDest.alt}" width="150" height="150">
+                <h4>${findDest.destination}</h4>
                 <h3>Trip Details:</h3>
                 <p>Start date: ${tripInfo.date}</p>
                 <p>Travelers: # ${tripInfo.travelers}</p>
                 <p>Duration: # ${tripInfo.duration}</p>
                 <p>Status: ${tripInfo.status}</p>
                 <h3>Trip Cost:</h3>
-                <p>Cost Per Day: $ ${destinationInfo.estimatedLodgingCostPerDay}</p>
-                <p>Cost Per Traveler: $ ${destinationInfo.estimatedFlightCostPerPerson}</p>
+                <p>Cost Per Day: $ ${findDest.estimatedLodgingCostPerDay}</p>
+                <p>Cost Per Traveler: $ ${findDest.estimatedFlightCostPerPerson}</p>
               </div>
             </div>
 
@@ -45,7 +57,8 @@ const domUpdates = {
           </div>
 
           <div role="tablist" class="carousel-indicators"></div>
-          `)
+          `
+          // )
           ////// ------------------------------------------>
 
           //// GLIDE VERSION CODE --------------------->
@@ -72,9 +85,11 @@ const domUpdates = {
           //// =----------------------------------------->
 
 
-        })
-      })
 
+        // }) ------>
+
+
+      })
 
     } else {
       return tripDomSection.insertAdjacentHTML('afterbegin',

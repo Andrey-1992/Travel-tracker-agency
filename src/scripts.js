@@ -40,6 +40,10 @@ const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
 const pastTripsView = document.getElementById('pastTripsView');
 const upcomingTripsView = document.getElementById('upcomingTripsView');
 const pendingTripsView = document.getElementById('pendingTripsView');
+pastTripsView.innerHTML = '';
+upcomingTripsView.innerHTML = '';
+pendingTripsView.innerHTML = '';
+
 
 const planningDate = document.getElementById('planningDate');
 const planningNoDays = document.getElementById('planningNoDays');
@@ -58,7 +62,7 @@ pastTripsBtn.addEventListener('click', showPastTripsView);
 upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
 pendingTripsBtn.addEventListener('click', showPendingTripsView);
 // logOutBtn.addEventListener('click', returnLogView);
-// submitFormBtn.addEventListener('click', submitTripForm);
+submitFormBtn.addEventListener('click', submitTripForm);
 
 
 
@@ -67,6 +71,7 @@ pendingTripsBtn.addEventListener('click', showPendingTripsView);
 let agencyRepo = new Agency();
 let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
+// let tripIdNum = 200;
 // console.log(agencyRepo)
 // console.log(currentDate)
 
@@ -104,6 +109,10 @@ function showPendingTripsView() {
 }
 
 function fetchAgencyData() {
+  // pastTripsView.innerHTML = '';
+  // upcomingTripsView.innerHTML = '';
+  // pendingTripsView.innerHTML = '';
+
   const travelerInfo = fetchCalls.getData('travelers');
   const tripsInfo = fetchCalls.getData('trips');
   const destinationsInfo = fetchCalls.getData('destinations');
@@ -140,14 +149,21 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[46];
+  currentTraveler = agencyRepo.travelers[7];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
 
 function updateTravelerInfo(currentTraveler) {
+
   currentTraveler.findTrips();
   currentTraveler.matchDestinationsAndTrips(agencyRepo);
+
+  // pastTripsView.innerHTML = '';
+  // upcomingTripsView.innerHTML = '';
+  // pendingTripsView.innerHTML = '';
+  // tripsViewInfoSection.innerHTML = '';
+
 
   const greetTraveler = currentTraveler.greetForTraveler();
   domUpdates.displayTravelerInfo(greetTraveler, travelerGreeting);
@@ -155,48 +171,105 @@ function updateTravelerInfo(currentTraveler) {
   const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
-  // new Glide(document.querySelector('.glide')).mount()
-  // new Glide(document.querySelector('.glide'), {
-  //   type: select.value,
-  //   focusAt: 'center',
-  //   perView: 3
-  // })
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
+  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, glideTest);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
+  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, glideTest);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, glideTest);
 
 
+  // Some GLIDE code ideas --------------------------------------->
+  // new Glide(document.querySelector('.glide')).mount()
+  // new Glide(document.querySelector('.glide'), {
+    //   type: select.value,
+    //   focusAt: 'center',
+    //   perView: 3
+    // })
   // let glider = new Glide(document.querySelector('.carousel-list'))
   // console.log(glider)
+  //---------------------------------------------------------------->
 
 }
 
+function submitTripForm() {
+
+  preventDefault();
+
+  calculateTripCost();
+
+  let destinationInfo = findDestinationInfo();
+  // console.log(destinationInfo);
+
+  let tripId = agencyRepo.trips.length + 1;
+  // console.log(typeof tripId);
+
+  const dateInput = dayjs(planningDate.value).format('YYYY/MM/DD');
+  // console.log('dateInput:', dateInput);
+
+  const noDaysInput = parseInt(planningNoDays.value);
+  // console.log('noDaysInput:', noDaysInput);
+
+  const noTravelersInput = parseInt(planningNoTravelers.value);
+  // console.log('noTravelersInput:', noTravelersInput);
 
 
-// let glide = new Glide(document.querySelector('.glider'))
-// new Glide('.glide').mount()
-// let glide = new Glide(document.querySelector('.glider'), {
-//   slidesToShow: 1,
-//   dots: '#dots',
-//   draggable: true,
-//   arrows: {
-//     prev: '.glider-prev',
-//     next: '.glider-next'
-//   }
-// })
-// glide.mount()
+  let postTripObj = {
+    id: tripId,
+    userID: currentTraveler.id,
+    destinationID: destinationInfo.id,
+    travelers: noTravelersInput,
+    date: dateInput,
+    duration: noDaysInput,
+    status: 'pending',
+    suggestedActivities: []
+  }
+  console.log(postTripObj);
+
+  fetchCalls.postNewData('trips', postTripObj);
+  fetchAgencyData();
+}
+
+
+function findDestinationInfo() {
+  let destinationInfo ;
+  const destinationInput = destinationDropdown.value;
+  console.log('destinationInput:', destinationInput);
+  let findDestinationId = agencyRepo.destinations.forEach(dest => {
+    if (dest.destination === destinationInput) {
+      destinationInfo = dest;
+    }
+  })
+  return destinationInfo;
+}
+
+
+function calculateTripCost() {
+  let destinationInfo = findDestinationInfo();
+  let noDaysInput = parseInt(planningNoDays.value);
+  let noTravelersInput = parseInt(planningNoTravelers.value);
+
+  let sumCostPerDay = noDaysInput * destinationInfo.estimatedLodgingCostPerDay;
+  let sumCostPerPerson = noTravelersInput * destinationInfo.estimatedFlightCostPerPerson;
+  let tripAvg = sumCostPerDay + sumCostPerPerson;
+  console.log('tripAvg:', tripAvg);
+  let tripPercentageAvg = tripAvg * .10;
+  console.log('tripPercentageAvg:', tripPercentageAvg);
+  let totalTripAvg = tripAvg + tripPercentageAvg;
+  console.log('totalTripAvg:', totalTripAvg);
+  const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
+
+  domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
+}

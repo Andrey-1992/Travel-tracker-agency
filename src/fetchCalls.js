@@ -24,10 +24,12 @@ const fetchCalls = {
     if (!res.ok) {
       throw new Error("Please make sure all Fields are filled out");
     }
+    console.log(res);
     return res.json();
   },
 
   displayErrorMessage(error, endPoint) {
+    console.log(error);
     // const postErrorActivity = document.querySelector(".post-error-activity");
     // const errorField = document.querySelector('.js-error');
     //
