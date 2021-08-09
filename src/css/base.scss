@@ -1,4 +1,6 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 $primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 ;
 
@@ -200,6 +202,42 @@ h2 {
   grid-column-end: span 3;
   grid-row-start: 7;
   grid-row-end: span 9;
+}
+
+.trips-view-info-section {
+  // margin: 0;
+  // padding: 0;
+  // box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+// Posibilty to refactor this design styles code !!
+.past-trips-view {
+  // border: solid black 2px;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50% , -50%);
+}
+
+.upcoming-trips-view {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50% , -50%);
+}
+
+.pending-trips-view {
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50% , -50%);
+}
+
+.trips-cards {
+  border: solid black 2px;
+  text-align: center;
 }
 
 .hidden {

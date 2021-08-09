@@ -10,7 +10,8 @@ import './images/turing-logo.png'
 // console.log('This is the JavaScript entry file - your code begins here.');
 // --------------------------------------------------------------->>
 
-///--------------- Import Section -----------------------------///
+///--------------- Import Section -----------------------------//
+import Glide from '@glidejs/glide'
 import Traveler from './classes/Traveler';
 import Trip from './classes/Trip';
 import Agency from './classes/Agency';
@@ -137,7 +138,7 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[5];
+  currentTraveler = agencyRepo.travelers[46];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
