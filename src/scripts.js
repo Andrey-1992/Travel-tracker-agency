@@ -47,7 +47,7 @@ const planningNoTravelers = document.getElementById('planningNoTravelers');
 const destinationDropdown = document.getElementById('destinationDropdown');
 // console.log(pendingTripsBtn);
 
-const glideTest = document.querySelector('.glide__slide');
+const glideTest = document.querySelector('.glide__slides');
 
 
 
@@ -155,8 +155,12 @@ function updateTravelerInfo(currentTraveler) {
   const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
-  // new Glide('.glide').mount()
-  new Glide(document.querySelector('.glide')).mount()
+  // new Glide(document.querySelector('.glide')).mount()
+  // new Glide(document.querySelector('.glide'), {
+  //   type: select.value,
+  //   focusAt: 'center',
+  //   perView: 3
+  // })
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
@@ -165,11 +169,11 @@ function updateTravelerInfo(currentTraveler) {
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
+  // domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+  // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
 
 
   // console.log('traveler PAST destinations:', currentTraveler.pastDestinationsRecord)
@@ -177,3 +181,18 @@ function updateTravelerInfo(currentTraveler) {
   // console.log('traveler UPCOMING trips:', travelerUpcomingTripsInfo)
   // console.log('traveler PENDING trips:', travelerPendingTripsInfo)
 }
+
+
+
+// let glide = new Glide(document.querySelector('.glider'))
+// new Glide('.glide').mount()
+// let glide = new Glide(document.querySelector('.glider'), {
+//   slidesToShow: 1,
+//   dots: '#dots',
+//   draggable: true,
+//   arrows: {
+//     prev: '.glider-prev',
+//     next: '.glider-next'
+//   }
+// })
+// glide.mount()
