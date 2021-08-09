@@ -258,7 +258,12 @@ function calculateTripCost() {
 
   let sumCostPerDay = noDaysInput * destinationInfo.estimatedLodgingCostPerDay;
   let sumCostPerPerson = noTravelersInput * destinationInfo.estimatedFlightCostPerPerson;
-  let totalTripAvg = sumCostPerDay + sumCostPerPerson;
+  let tripAvg = sumCostPerDay + sumCostPerPerson;
+  console.log('tripAvg:', tripAvg);
+  let tripPercentageAvg = tripAvg * .10;
+  console.log('tripPercentageAvg:', tripPercentageAvg);
+  let totalTripAvg = tripAvg + tripPercentageAvg;
+  console.log('totalTripAvg:', totalTripAvg);
   const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
