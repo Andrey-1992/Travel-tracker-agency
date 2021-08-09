@@ -62,7 +62,7 @@ describe('Traveler', () => {
     expect(travelerTest.allTripsRecord).to.be.an('array');
   });
 
-  it('should return the first name in Upper Case', () => {
+  it('should return the first name of the current traveler', () => {
 
     expect(travelerTest.getFirstName()).to.be.an('string');
   });
@@ -70,6 +70,11 @@ describe('Traveler', () => {
   it('should determine what time of the day we are (Morning || Afternoon || Evening)', () => {
 
     expect(travelerTest.determineTimeOfDay()).to.be.an('string');
+  });
+
+  it('should return a greeting for a user', () => {
+
+    expect(travelerTest.greetForTraveler()).to.be.an('string');
   });
 
   it('should organize the trips by date based on past / upcoming / pending status', () => {
