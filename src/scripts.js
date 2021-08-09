@@ -10,7 +10,8 @@ import './images/turing-logo.png'
 // console.log('This is the JavaScript entry file - your code begins here.');
 // --------------------------------------------------------------->>
 
-///--------------- Import Section -----------------------------///
+///--------------- Import Section -----------------------------//
+import Glide from '@glidejs/glide'
 import Traveler from './classes/Traveler';
 import Trip from './classes/Trip';
 import Agency from './classes/Agency';
@@ -45,6 +46,8 @@ const planningNoDays = document.getElementById('planningNoDays');
 const planningNoTravelers = document.getElementById('planningNoTravelers');
 const destinationDropdown = document.getElementById('destinationDropdown');
 // console.log(pendingTripsBtn);
+
+const glideTest = document.querySelector('.glide__slides');
 
 
 
@@ -137,7 +140,7 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[5];
+  currentTraveler = agencyRepo.travelers[46];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
@@ -152,20 +155,48 @@ function updateTravelerInfo(currentTraveler) {
   const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
+  // new Glide(document.querySelector('.glide')).mount()
+  // new Glide(document.querySelector('.glide'), {
+  //   type: select.value,
+  //   focusAt: 'center',
+  //   perView: 3
+  // })
+
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
+  // Glide dom Update version
+  // domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, glideTest);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
+  // Glide dom Update version
+  // domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, glideTest);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+  // Glide dom Update version
+  // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, glideTest);
 
-  // console.log('traveler PAST destinations:', currentTraveler.pastDestinationsRecord)
-  // console.log('traveler PAST trips:', travelerPastTripsInfo)
-  // console.log('traveler UPCOMING trips:', travelerUpcomingTripsInfo)
-  // console.log('traveler PENDING trips:', travelerPendingTripsInfo)
+
+  // let glider = new Glide(document.querySelector('.carousel-list'))
+  // console.log(glider)
+
 }
+
+
+
+// let glide = new Glide(document.querySelector('.glider'))
+// new Glide('.glide').mount()
+// let glide = new Glide(document.querySelector('.glider'), {
+//   slidesToShow: 1,
+//   dots: '#dots',
+//   draggable: true,
+//   arrows: {
+//     prev: '.glider-prev',
+//     next: '.glider-next'
+//   }
+// })
+// glide.mount()
