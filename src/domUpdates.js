@@ -17,6 +17,8 @@ const domUpdates = {
     if (tripData.length) {
       tripData.forEach(tripInfo => {
         // destinationData.forEach(destinationInfo => {
+        // tripDomSection.innerHTML = '';
+
         let findDest ;
         agencyDestinationsRepo.destinations.forEach(dest => {
 
@@ -24,9 +26,9 @@ const domUpdates = {
             findDest = dest;
           }
         })
-        // tripDomSection.innerHTML = '';
           //// Glide & Grid Code --------------------------->>
-          tripDomSection.insertAdjacentHTML('afterbegin',
+          // tripDomSection.insertAdjacentHTML('afterbegin',
+          tripDomSection.innerHTML +=
           `
           <div class="trips-cards">
 
@@ -55,7 +57,8 @@ const domUpdates = {
           </div>
 
           <div role="tablist" class="carousel-indicators"></div>
-          `)
+          `
+          // )
           ////// ------------------------------------------>
 
           //// GLIDE VERSION CODE --------------------->

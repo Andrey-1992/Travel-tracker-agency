@@ -40,6 +40,10 @@ const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
 const pastTripsView = document.getElementById('pastTripsView');
 const upcomingTripsView = document.getElementById('upcomingTripsView');
 const pendingTripsView = document.getElementById('pendingTripsView');
+pastTripsView.innerHTML = '';
+upcomingTripsView.innerHTML = '';
+pendingTripsView.innerHTML = '';
+
 
 const planningDate = document.getElementById('planningDate');
 const planningNoDays = document.getElementById('planningNoDays');
@@ -105,6 +109,10 @@ function showPendingTripsView() {
 }
 
 function fetchAgencyData() {
+  // pastTripsView.innerHTML = '';
+  // upcomingTripsView.innerHTML = '';
+  // pendingTripsView.innerHTML = '';
+
   const travelerInfo = fetchCalls.getData('travelers');
   const tripsInfo = fetchCalls.getData('trips');
   const destinationsInfo = fetchCalls.getData('destinations');
@@ -141,14 +149,21 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[47];
+  currentTraveler = agencyRepo.travelers[7];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
 
 function updateTravelerInfo(currentTraveler) {
+
   currentTraveler.findTrips();
   currentTraveler.matchDestinationsAndTrips(agencyRepo);
+
+  // pastTripsView.innerHTML = '';
+  // upcomingTripsView.innerHTML = '';
+  // pendingTripsView.innerHTML = '';
+  // tripsViewInfoSection.innerHTML = '';
+
 
   const greetTraveler = currentTraveler.greetForTraveler();
   domUpdates.displayTravelerInfo(greetTraveler, travelerGreeting);
@@ -224,6 +239,7 @@ function submitTripForm() {
   console.log(postTripObj);
 
   fetchCalls.postNewData('trips', postTripObj);
+  fetchAgencyData();
 }
 
 
@@ -256,5 +272,4 @@ function calculateTripCost() {
   const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
-  fetchAgencyData();
 }
