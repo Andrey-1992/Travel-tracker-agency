@@ -7,10 +7,12 @@ const domUpdates = {
 
   displayTripsCardsInfo(tripData, destinationData, tripDomSection) {
     tripDomSection.innerHTML = '';
+
     // let glider = new Glide(tripDomSection)
     // new Glide(document.querySelector('.glide')).mount()
     // let glider = new Glide(document.querySelector('.carousel-list'))
     // console.log(glider)
+    
     if (tripData.length) {
       return tripData.forEach(tripInfo => {
         destinationData.forEach(destinationInfo => {
@@ -74,7 +76,6 @@ const domUpdates = {
 
         })
       })
-
 
     } else {
       return tripDomSection.insertAdjacentHTML('afterbegin',

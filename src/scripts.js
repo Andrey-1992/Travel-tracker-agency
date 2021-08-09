@@ -155,12 +155,6 @@ function updateTravelerInfo(currentTraveler) {
   const travelerTotalSpent =`This year you had spent a total of: $ ${currentTraveler.calculateYearTotalSpent(agencyRepo)}`;
   domUpdates.displayTravelerInfo(travelerTotalSpent, totalSpentInfo);
 
-  // new Glide(document.querySelector('.glide')).mount()
-  // new Glide(document.querySelector('.glide'), {
-  //   type: select.value,
-  //   focusAt: 'center',
-  //   perView: 3
-  // })
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
@@ -181,22 +175,15 @@ function updateTravelerInfo(currentTraveler) {
   // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, glideTest);
 
 
+  // Some GLIDE code ideas --------------------------------------->
+  // new Glide(document.querySelector('.glide')).mount()
+  // new Glide(document.querySelector('.glide'), {
+    //   type: select.value,
+    //   focusAt: 'center',
+    //   perView: 3
+    // })
   // let glider = new Glide(document.querySelector('.carousel-list'))
   // console.log(glider)
+  //---------------------------------------------------------------->
 
 }
-
-
-
-// let glide = new Glide(document.querySelector('.glider'))
-// new Glide('.glide').mount()
-// let glide = new Glide(document.querySelector('.glider'), {
-//   slidesToShow: 1,
-//   dots: '#dots',
-//   draggable: true,
-//   arrows: {
-//     prev: '.glider-prev',
-//     next: '.glider-next'
-//   }
-// })
-// glide.mount()
