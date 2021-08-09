@@ -141,7 +141,7 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[46];
+  currentTraveler = agencyRepo.travelers[6];
   console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
@@ -159,19 +159,19 @@ function updateTravelerInfo(currentTraveler) {
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView);
+  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, glideTest);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView);
+  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, glideTest);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView);
+  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView, agencyRepo);
   // Glide dom Update version
   // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, glideTest);
 
@@ -190,22 +190,8 @@ function updateTravelerInfo(currentTraveler) {
 }
 
 function submitTripForm() {
-  // console.log('hola');
-  // preventDefault();
-  // tripIdNum ++;
-  // console.log(tripIdNum);
 
-  // Find Destination info --------->
-  // let destinationId ;
-  // const destinationInput = destinationDropdown.value;
-  // console.log('destinationInput:', destinationInput);
-  // let findDestinationId = agencyRepo.destinations.forEach(dest => {
-  //   if (dest.destination === destinationInput) {
-  //     destinationId = dest;
-  //   }
-  // })
-  // console.log(destinationId);
-  // -------------------------------->
+  // preventDefault();
 
   calculateTripCost();
 
@@ -214,7 +200,6 @@ function submitTripForm() {
 
   let tripId = agencyRepo.trips.length + 1;
   // console.log(typeof tripId);
-  // console.log(currentTraveler.id);
 
   const dateInput = dayjs(planningDate.value).format('YYYY/MM/DD');
   // console.log('dateInput:', dateInput);
@@ -241,6 +226,7 @@ function submitTripForm() {
   fetchCalls.postNewData('trips', postTripObj);
 }
 
+
 function findDestinationInfo() {
   let destinationInfo ;
   const destinationInput = destinationDropdown.value;
@@ -252,6 +238,7 @@ function findDestinationInfo() {
   })
   return destinationInfo;
 }
+
 
 function calculateTripCost() {
   let destinationInfo = findDestinationInfo();
@@ -269,4 +256,5 @@ function calculateTripCost() {
   const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
+  fetchAgencyData();
 }
