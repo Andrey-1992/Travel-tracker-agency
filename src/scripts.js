@@ -51,10 +51,10 @@ const destinationDropdown = document.getElementById('destinationDropdown');
 
 ///--------------- Event Listeners -----------------------------///
 window.addEventListener("load", fetchAgencyData());
+pastTripsBtn.addEventListener('click', showPastTripsView);
+upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
+pendingTripsBtn.addEventListener('click', showPendingTripsView);
 // logOutBtn.addEventListener('click', returnLogView);
-// pastTripsBtn.addEventListener('click', showPastTripsView);
-// upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
-// pendingTripsBtn.addEventListener('click', showPendingTripsView);
 // submitFormBtn.addEventListener('click', submitTripForm);
 
 
@@ -77,6 +77,27 @@ function show(element) {
 
 function hide(element) {
   element.classList.add('hidden');
+}
+
+function showPastTripsView() {
+  preventDefault();
+  show(pastTripsView);
+  hide(upcomingTripsView);
+  hide(pendingTripsView);
+}
+
+function showUpcomingTripsView() {
+  preventDefault();
+  show(upcomingTripsView);
+  hide(pastTripsView);
+  hide(pendingTripsView);
+}
+
+function showPendingTripsView() {
+  preventDefault();
+  show(pendingTripsView);
+  hide(upcomingTripsView);
+  hide(pastTripsView);
 }
 
 function fetchAgencyData() {
@@ -116,7 +137,8 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[46];
+  currentTraveler = agencyRepo.travelers[5];
+  console.log(currentTraveler)
   updateTravelerInfo(currentTraveler);
 }
 

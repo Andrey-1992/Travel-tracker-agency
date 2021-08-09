@@ -6,8 +6,8 @@ const domUpdates = {
 
   displayTripsCardsInfo(tripData, destinationData, tripDomSection) {
     tripDomSection.innerHTML = '';
-    console.log(tripData)
-    console.log(tripDomSection)
+    // console.log(tripData)
+    // console.log(tripDomSection)
     if (tripData.length) {
       return tripData.forEach(tripInfo => {
         destinationData.forEach(destinationInfo => {
