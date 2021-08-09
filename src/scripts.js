@@ -58,7 +58,7 @@ pastTripsBtn.addEventListener('click', showPastTripsView);
 upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
 pendingTripsBtn.addEventListener('click', showPendingTripsView);
 // logOutBtn.addEventListener('click', returnLogView);
-// submitFormBtn.addEventListener('click', submitTripForm);
+submitFormBtn.addEventListener('click', submitTripForm);
 
 
 
@@ -67,6 +67,7 @@ pendingTripsBtn.addEventListener('click', showPendingTripsView);
 let agencyRepo = new Agency();
 let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
+// let tripIdNum = 200;
 // console.log(agencyRepo)
 // console.log(currentDate)
 
@@ -186,4 +187,79 @@ function updateTravelerInfo(currentTraveler) {
   // console.log(glider)
   //---------------------------------------------------------------->
 
+}
+
+function submitTripForm() {
+  // console.log('hola');
+  // preventDefault();
+  // tripIdNum ++;
+  // console.log(tripIdNum);
+
+  // Find Destination info --------->
+  // let destinationId ;
+  // const destinationInput = destinationDropdown.value;
+  // console.log('destinationInput:', destinationInput);
+  // let findDestinationId = agencyRepo.destinations.forEach(dest => {
+  //   if (dest.destination === destinationInput) {
+  //     destinationId = dest;
+  //   }
+  // })
+  // console.log(destinationId);
+  // -------------------------------->
+
+  calculateTripCost();
+
+  let destinationInfo = findDestinationInfo();
+  // console.log(destinationInfo);
+
+  let tripId = agencyRepo.trips.length + 1;
+  // console.log(typeof tripId);
+  // console.log(currentTraveler.id);
+
+  const dateInput = dayjs(planningDate.value).format('YYYY/MM/DD');
+  // console.log('dateInput:', dateInput);
+
+  const noDaysInput = parseInt(planningNoDays.value);
+  // console.log('noDaysInput:', noDaysInput);
+
+  const noTravelersInput = parseInt(planningNoTravelers.value);
+  // console.log('noTravelersInput:', noTravelersInput);
+
+
+  let postTripObj = {
+    id: tripId,
+    userID: currentTraveler.id,
+    destinationID: destinationInfo.id,
+    travelers: noTravelersInput,
+    date: dateInput,
+    duration: noDaysInput,
+    status: 'pending',
+    suggestedActivities: []
+  }
+  console.log(postTripObj);
+}
+
+function findDestinationInfo() {
+  let destinationInfo ;
+  const destinationInput = destinationDropdown.value;
+  console.log('destinationInput:', destinationInput);
+  let findDestinationId = agencyRepo.destinations.forEach(dest => {
+    if (dest.destination === destinationInput) {
+      destinationInfo = dest;
+    }
+  })
+  return destinationInfo;
+}
+
+function calculateTripCost() {
+  let destinationInfo = findDestinationInfo();
+  let noDaysInput = parseInt(planningNoDays.value);
+  let noTravelersInput = parseInt(planningNoTravelers.value);
+
+  let sumCostPerDay = noDaysInput * destinationInfo.estimatedLodgingCostPerDay;
+  let sumCostPerPerson = noTravelersInput * destinationInfo.estimatedFlightCostPerPerson;
+  let totalTripAvg = sumCostPerDay + sumCostPerPerson;
+  const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
+
+  domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
 }
