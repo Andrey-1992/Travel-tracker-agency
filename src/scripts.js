@@ -83,6 +83,7 @@ submitFormBtn.addEventListener('click', submitTripForm);
 let agencyRepo = new Agency();
 let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
+let currentTravelerLogin;
 // let tripIdNum = 200;
 // console.log(agencyRepo)
 // console.log(currentDate)
@@ -121,7 +122,11 @@ function fetchLoginTraveler(userId) {
   const userIdNum = parseInt(userId.split('er')[1]);
   console.log(userIdNum);
 
-  // fetchAgencyData()
+  const currentTravelerId = getTravelerData(userIdNum)
+  .then(data => currentTravelerLogin = new User(data));
+
+
+  fetchAgencyData()
 }
 
 function showPastTripsView() {
