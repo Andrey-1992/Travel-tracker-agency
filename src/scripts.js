@@ -34,14 +34,12 @@ let passwordInput = document.getElementById('passwordInput');
 let usernameLabel = document.getElementById('usernameLabel');
 let passwordLabel = document.getElementById('passwordLabel');
 let warnings = document.getElementById('warnings');
-// let loginButton = document.getElementById('loginButton');
 const logOutBtn = document.getElementById('logOutBtn');
 
 const pastTripsBtn = document.getElementById('pastTripsBtn');
 const upcomingTripsBtn = document.getElementById('upcomingTripsBtn');
 const pendingTripsBtn = document.getElementById('pendingTripsBtn');
 const submitFormBtn = document.getElementById('submitFormBtn');
-
 
 const travelerGreeting = document.getElementById('travelerGreeting');
 const totalSpentInfo = document.getElementById('totalSpentInfo');
@@ -52,18 +50,12 @@ const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
 const pastTripsView = document.getElementById('pastTripsView');
 const upcomingTripsView = document.getElementById('upcomingTripsView');
 const pendingTripsView = document.getElementById('pendingTripsView');
-pastTripsView.innerHTML = '';
-upcomingTripsView.innerHTML = '';
-pendingTripsView.innerHTML = '';
-
 
 const planningDate = document.getElementById('planningDate');
 const planningNoDays = document.getElementById('planningNoDays');
 const planningNoTravelers = document.getElementById('planningNoTravelers');
 const destinationDropdown = document.getElementById('destinationDropdown');
-// console.log(pendingTripsBtn);
 
-const glideTest = document.querySelector('.glide__slides');
 
 
 
@@ -86,9 +78,6 @@ let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
 let currentTravelerLogin;
 let logInId = 0;
-// let tripIdNum = 200;
-// console.log(agencyRepo)
-// console.log(currentDate)
 
 function preventDefault() {
   event.preventDefault()
@@ -104,26 +93,23 @@ function hide(element) {
 
 function loginValidation() {
   preventDefault();
-  // console.log(userInput.value.length);
   if (!userInput.value.length || !passwordInput.value.length) {
-    warnings.innerText += '';
-    warnings.innerText += 'Please fill out fields';
+    warnings.innerText = '';
+    warnings.innerText = 'Please fill out fields';
   } else if (passwordInput.value !== 'travel') {
-    warnings.innerText += '';
-    warnings.innerText += 'Invalid Password!';
+    warnings.innerText = '';
+    warnings.innerText = 'Invalid Password!';
   } else if (!userInput.value.includes('traveler')) {
-    warnings.innerText += '';
-    warnings.innerText += 'Invalid Username!';
+    warnings.innerText = '';
+    warnings.innerText = 'Invalid Username!';
   } else {
     fetchLoginTraveler(userInput.value);
   }
 }
 
 function fetchLoginTraveler(userId) {
-  // console.log(typeof userId);
   const userIdNum = parseInt(userId.split('er')[1]);
   logInId = userIdNum;
-  console.log(userIdNum);
 
   const currentTravelerId = fetchCalls.getTravelerData(userIdNum)
   // .then(data => console.log(data));
@@ -155,9 +141,6 @@ function showPendingTripsView() {
 }
 
 function fetchAgencyData() {
-  // pastTripsView.innerHTML = '';
-  // upcomingTripsView.innerHTML = '';
-  // pendingTripsView.innerHTML = '';
 
   const travelerInfo = fetchCalls.getData('travelers');
   const tripsInfo = fetchCalls.getData('trips');
@@ -194,18 +177,6 @@ function storeAgencyData (tripsData, destinationsData) {
   })
 }
 
-function updatePageInfo() {
-  // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[logInId];
-  // console.log(currentTraveler)
-  // console.log('currentTravelerLogin:', currentTravelerLogin)
-
-  show(travelerDashboard);
-  hide(loginDashboard);
-
-  // updateTravelerInfo(currentTraveler);
-}
-
 function updateTravelerInfo() {
 
   show(travelerDashboard);
@@ -217,13 +188,6 @@ function updateTravelerInfo() {
   currentTravelerLogin.findTrips()
 
   currentTraveler.findTrips();
-  // currentTraveler.matchDestinationsAndTrips(agencyRepo);
-
-  // pastTripsView.innerHTML = '';
-  // upcomingTripsView.innerHTML = '';
-  // pendingTripsView.innerHTML = '';
-  // tripsViewInfoSection.innerHTML = '';
-
 
   const greetTraveler = currentTraveler.greetForTraveler();
   domUpdates.displayTravelerInfo(greetTraveler, travelerGreeting);
@@ -235,33 +199,14 @@ function updateTravelerInfo() {
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
   let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView, agencyRepo);
-  // Glide dom Update version
-  // domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, glideTest);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
   let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView, agencyRepo);
-  // Glide dom Update version
-  // domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, glideTest);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
   let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
   domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView, agencyRepo);
-  // Glide dom Update version
-  // domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, glideTest);
-
-
-  // Some GLIDE code ideas --------------------------------------->
-  // new Glide(document.querySelector('.glide')).mount()
-  // new Glide(document.querySelector('.glide'), {
-    //   type: select.value,
-    //   focusAt: 'center',
-    //   perView: 3
-    // })
-  // let glider = new Glide(document.querySelector('.carousel-list'))
-  // console.log(glider)
-  //---------------------------------------------------------------->
-
 }
 
 function submitTripForm() {
@@ -283,8 +228,6 @@ function submitTripForm() {
   // console.log('noDaysInput:', noDaysInput);
 
   const noTravelersInput = parseInt(planningNoTravelers.value);
-  // console.log('noTravelersInput:', noTravelersInput);
-
 
   let postTripObj = {
     id: tripId,
@@ -336,7 +279,7 @@ function calculateTripCost() {
   // console.log('tripPercentageAvg:', tripPercentageAvg);
   let totalTripAvg = tripAvg + tripPercentageAvg;
   // console.log('totalTripAvg:', totalTripAvg);
-  const totalTripAvgDom = `Estimated Cost: - Agency Fee $ ${tripPercentageAvg}, - Trip Avg $ ${tripAvg}, total: $ ${totalTripAvg}`
+  const totalTripAvgDom = `Estimated Cost: - Agency Fee $ ${tripPercentageAvg} - Trip Avg $ ${tripAvg} - Total: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
 }
