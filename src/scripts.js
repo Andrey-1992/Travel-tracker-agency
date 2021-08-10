@@ -208,7 +208,6 @@ function submitTripForm() {
   preventDefault();
   calculateTripCost();
 
-
   let tripId = agencyRepo.trips.length + 1;
   let destinationInfo = findDestinationInfo();
   const noDaysInput = parseInt(planningNoDays.value);
