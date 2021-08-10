@@ -1,10 +1,3 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-// An example of how you tell webpack to use a CSS (SCSS) file
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// console.log('This is the JavaScript entry file - your code begins here.');
-// --------------------------------------------------------------->>
-
 
 ///--------------- Import Section -----------------------------//
 import './css/base.scss';
@@ -17,8 +10,6 @@ import Destination from './classes/Destination';
 import fetchCalls from './fetchCalls';
 import domUpdates from './domUpdates';
 import dayjs from 'dayjs';
-
-
 
 
 ///--------------- Queries Section -----------------------------///
