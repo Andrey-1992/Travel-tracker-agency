@@ -24,7 +24,17 @@ import dayjs from 'dayjs';
 
 
 ///--------------- Queries Section -----------------------------///
+
+let loginFormContainer = document.getElementById('loginFormContainer');
+let loginForm = document.getElementById('loginForm');
+let userInput = document.getElementById('userInput');
+let passwordInput = document.getElementById('passwordInput');
+let usernameLabel = document.getElementById('usernameLabel');
+let passwordLabel = document.getElementById('passwordLabel');
+let warnings = document.getElementById('warnings');
+// let loginButton = document.getElementById('loginButton');
 const logOutBtn = document.getElementById('logOutBtn');
+
 const pastTripsBtn = document.getElementById('pastTripsBtn');
 const upcomingTripsBtn = document.getElementById('upcomingTripsBtn');
 const pendingTripsBtn = document.getElementById('pendingTripsBtn');
@@ -35,6 +45,7 @@ const travelerGreeting = document.getElementById('travelerGreeting');
 const totalSpentInfo = document.getElementById('totalSpentInfo');
 const planningCost = document.getElementById('planningCost');
 
+const travelerDashboard = document.querySelector('.traveler-dashboard-view')
 const travelerInfoSectionView = document.getElementById('travelerGreeting');
 const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
 const pastTripsView = document.getElementById('pastTripsView');

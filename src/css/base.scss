@@ -30,11 +30,13 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  color: $gray-smoke-color;
 }
 
 .login-header {
   text-align: center;
   font-weight: 700;
+  color: $gray-smoke-color;
 }
 
 .login-form {
