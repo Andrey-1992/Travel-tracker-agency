@@ -39,15 +39,15 @@ const domUpdates = {
             <div class="carousel-list">
               <div class="carousel-item">
                 <img src="${findDest.image}" alt="${findDest.alt}">
-                <h5>${findDest.destination}</h5>
-                <h5>Trip Details:</h5>
-                <p>Start date: ${tripInfo.date}</p>
-                <p>Travelers: # ${tripInfo.travelers}</p>
-                <p>Duration: # ${tripInfo.duration}</p>
-                <p>Status: ${tripInfo.status}</p>
-                <h5>Trip Cost:</h5>
-                <p>Cost Per Day: $ ${findDest.estimatedLodgingCostPerDay}</p>
-                <p>Cost Per Traveler: $ ${findDest.estimatedFlightCostPerPerson}</p>
+                <h4 class="card-headers">${findDest.destination}</h4>
+                <h4 class="card-headers">Trip Details:</h4>
+                <p class="card-text">Start date: ${tripInfo.date}</p>
+                <p class="card-text">Travelers: # ${tripInfo.travelers}</p>
+                <p class="card-text">Duration: # ${tripInfo.duration}</p>
+                <p class="card-text">Status: ${tripInfo.status}</p>
+                <h4 class="card-headers">Trip Cost:</h4>
+                <p class="card-text">Cost Per Day: $ ${findDest.estimatedLodgingCostPerDay}</p>
+                <p class="card-text">Cost Per Traveler: $ ${findDest.estimatedFlightCostPerPerson}</p>
               </div>
             </div>
 
