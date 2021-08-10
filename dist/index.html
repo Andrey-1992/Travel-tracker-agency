@@ -19,11 +19,11 @@
      <h1 class="login-header">Login</h1>
      <section class="group">
        <input type="text" class="login-input" id="userInput"><span class="bar"></span>
-       <label for="" class="login-label"><i class="far fa-user"></i> Account</label>
+       <label for="userInput" class="login-label"><i class="far fa-user"></i> Account</label>
      </section>
      <section class="group">
        <input type="password" class="login-input" id="passwordInput"><span class="bar"></span>
-       <label for="" class="login-label"><i class="fas fa-key"></i> Password</label>
+       <label for="passwordInput" class="login-label"><i class="fas fa-key"></i> Password</label>
      </section>
      <button type="submit" class="login-button" id="loginButton">Login</button>
      <p class="warnings" id="warnings"></p>
@@ -140,35 +140,15 @@
     </article>
 
     <article id="tripsViewInfoSection" class="trips-view-info-section">
-
       <section id="pastTripsView" class="past-trips-view">
-        <!-- <div class="glide">
-          <div class="glide__track" data-glide-el="track">
-            <ul class="glide__slides">
-              <li class="glide__slide">0</li>
-              <li class="glide__slide">1</li>
-              <li class="glide__slide">2</li>
-            </ul>
-          </div>
-        </div>
-
-          <div class="glide__arrows" data-glide-el="controls">
-            <button class="glide__arrow glide__arrow-left" data-glide-dir="<">prev</button>
-            <button class="glide__arrow glide__arrow-right" data-glide-dir=">">next</button>
-          </div> -->
-
       </section>
-
-
       <section id="upcomingTripsView" class="upcoming-trips-view hidden" >
       </section>
       <section id="pendingTripsView" class="pending-trips-view hidden">
       </section>
     </article>
-
   </main>
 
-  <!-- <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css"> -->
   <script src="bundle.js"></script>
   <script src="https://kit.fontawesome.com/af04af5187.js" crossorigin="anonymous"></script>
 </body>
