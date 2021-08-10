@@ -10,7 +10,7 @@ const fetchCalls = {
   getTravelerData(idNum) {
     return fetch(`http://localhost:3001/api/v1/travelers/${idNum}`)
       .then(response => response.json())
-      // .then(data => data)
+      .then(data => data)
       .catch((error) => this.displayErrorMessage(error));
   },
 
