@@ -24,9 +24,9 @@ The primary goal of Travel Tracker App is to help travelers plan their future tr
 
 <details>
   <Summary>Login Form</summary>
-  * When first arriving at the site, a user should be able to log in with a username and password.
-  * username: traveler(Choose a number from 1 to 50)
-  * password: travel
+  - When first arriving at the site, a user should be able to log in with a username and password.
+  - username: traveler(Choose a number from 1 to 50)
+  - password: travel
 </details>
 
 ### Traveler Dashboard
