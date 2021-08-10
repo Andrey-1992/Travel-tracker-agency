@@ -99,6 +99,23 @@ function hide(element) {
   element.classList.add('hidden');
 }
 
+function loginValidation() {
+  preventDefault();
+  // console.log(userInput.value.length);
+  if (!userInput.value.length || !passwordInput.value.length) {
+    warnings.innerText += '';
+    warnings.innerText += 'Please fill out fields';
+  } else if (passwordInput.value !== 'travel') {
+    warnings.innerText += '';
+    warnings.innerText += 'Invalid Password!';
+  } else if (!userInput.value.includes('traveler')) {
+    warnings.innerText += '';
+    warnings.innerText += 'Invalid Username!';
+  } else {
+    fetchLoginUser(userInput.value);
+  }
+}
+
 function showPastTripsView() {
   preventDefault();
   show(pastTripsView);
