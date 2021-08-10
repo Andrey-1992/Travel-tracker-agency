@@ -38,7 +38,7 @@ const domUpdates = {
 
             <div class="carousel-list">
               <div class="carousel-item">
-                <img src="${findDest.image}" alt="${findDest.alt}" width="150" height="150">
+                <img src="${findDest.image}" alt="${findDest.alt}">
                 <h5>${findDest.destination}</h5>
                 <h5>Trip Details:</h5>
                 <p>Start date: ${tripInfo.date}</p>
