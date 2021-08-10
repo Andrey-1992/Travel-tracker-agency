@@ -141,6 +141,7 @@ function returnLogView() {
 
   passwordInput.value = '';
   userInput.value = '';
+
   show(loginDashboard);
   hide(travelerDashboard);
 }
@@ -263,7 +264,7 @@ function calculateTripCost() {
   let tripPercentageAvg = tripAvg * .10;
   let totalTripAvg = tripAvg + tripPercentageAvg;
 
-  const totalTripAvgDom = `Estimated Cost: Agency Fee $ ${tripPercentageAvg} + Trip Avg $ ${tripAvg} = Total: $ ${totalTripAvg}`
+  const totalTripAvgDom = `Estimated Cost:   "Agency Fee $ ${tripPercentageAvg} + Trip Avg $ ${tripAvg} = Total: $ ${totalTripAvg}"`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
 }
