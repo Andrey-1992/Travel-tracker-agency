@@ -15,7 +15,6 @@ The primary goal of Travel Tracker App is to help travelers plan their future tr
 ## Features
 * [Login Screen](#login-screen)
 * [Traveler Dashboard](#traveler-dashboard)
-* [Responsive Design](#responsive-design)
 
 ### Login Screen
 <img width="1296" alt="Travel-tracker-Login-form" src="https://user-images.githubusercontent.com/78002374/128943313-a419636c-4431-4a88-8a99-8a4e52179acf.png">
@@ -32,12 +31,7 @@ The primary goal of Travel Tracker App is to help travelers plan their future tr
 ### Traveler Dashboard
 When a traveler visits their dashboard, they will see a welcome message with their name, as well as the amounts they've spent on trips for the previous year and this year. The user will also be able to see a form for creating a new trip, as well as all of their previous, current, and pending trips.
 
-
-
-### Responsive Design
-* Desktop Version :
 <img width="1299" alt="Travel-tracker-Desktop-version" src="https://user-images.githubusercontent.com/78002374/128943360-4cb7e470-17a5-471a-800d-4f435855d047.png">
-
 
 ## Continuous Improvement
 One of the future additions to this app should now support two different types of users. In addition to having a traveler, you will now add a travel agency. With the agency profile, the app will create an admin view to be able to:
