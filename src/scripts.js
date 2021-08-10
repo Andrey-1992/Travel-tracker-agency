@@ -69,6 +69,7 @@ const glideTest = document.querySelector('.glide__slides');
 
 ///--------------- Event Listeners -----------------------------///
 window.addEventListener("load", fetchAgencyData());
+loginForm.addEventListener('submit', loginValidation);
 pastTripsBtn.addEventListener('click', showPastTripsView);
 upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
 pendingTripsBtn.addEventListener('click', showPendingTripsView);
