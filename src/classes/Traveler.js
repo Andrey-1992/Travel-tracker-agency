@@ -7,11 +7,11 @@ class Traveler {
     this.travelerType = travelerInfo.travelerType;
     this.allTripsRecord = [];
     this.pastTripsRecord = [];
-    this.pastDestinationsRecord = [];
+    // this.pastDestinationsRecord = [];
     this.upcomingTripsRecord = [];
-    this.upcomingDestinationsRecord = [];
+    // this.upcomingDestinationsRecord = [];
     this.pendingTripsRecord = [];
-    this.pendingDestinationsRecord = [];
+    // this.pendingDestinationsRecord = [];
     this.allDestinationsRecord = [];
     this.yearTotalSpent = 0;
   }
@@ -71,7 +71,10 @@ class Traveler {
           if (destinationInfo.id === trip.destinationID) {
             let sumCostPerDay = trip.duration * destinationInfo.estimatedLodgingCostPerDay;
             let sumCostPerPerson = trip.travelers * destinationInfo.estimatedFlightCostPerPerson;
-            acc += sumCostPerDay + sumCostPerPerson;
+            let tripAvg = sumCostPerDay + sumCostPerPerson;
+            let tripPercentageAvg = tripAvg * .10;
+            let totalTripAvg = tripAvg + tripPercentageAvg;
+            acc += totalTripAvg;
           }
         }
       })
@@ -82,35 +85,35 @@ class Traveler {
     return sumTripsCost
   }
 
-  matchDestinationsAndTrips(destinations) {
-    if (this.pastTripsRecord.length) {
-      this.pastTripsRecord.forEach(tripInfo => {
-        destinations.destinations.forEach(destinationInfo => {
-          if (tripInfo.destinationID === destinationInfo.id) {
-            this.pastDestinationsRecord.push(destinationInfo)
-          }
-        })
-      })
-    }
-    if (this.upcomingTripsRecord.length) {
-      this.upcomingTripsRecord.forEach(tripInfo => {
-        destinations.destinations.forEach(destinationInfo => {
-          if (tripInfo.destinationID === destinationInfo.id) {
-            this.upcomingDestinationsRecord.push(destinationInfo)
-          }
-        })
-      })
-    }
-    if (this.pendingTripsRecord.length) {
-      this.pendingTripsRecord.forEach(tripInfo => {
-        destinations.destinations.forEach(destinationInfo => {
-          if (tripInfo.destinationID === destinationInfo.id) {
-            this.pendingDestinationsRecord.push(destinationInfo)
-          }
-        })
-      })
-    }
-  }
+  // matchDestinationsAndTrips(destinations) {
+  //   if (this.pastTripsRecord.length) {
+  //     this.pastTripsRecord.forEach(tripInfo => {
+  //       destinations.destinations.forEach(destinationInfo => {
+  //         if (tripInfo.destinationID === destinationInfo.id) {
+  //           this.pastDestinationsRecord.push(destinationInfo)
+  //         }
+  //       })
+  //     })
+  //   }
+  //   if (this.upcomingTripsRecord.length) {
+  //     this.upcomingTripsRecord.forEach(tripInfo => {
+  //       destinations.destinations.forEach(destinationInfo => {
+  //         if (tripInfo.destinationID === destinationInfo.id) {
+  //           this.upcomingDestinationsRecord.push(destinationInfo)
+  //         }
+  //       })
+  //     })
+  //   }
+  //   if (this.pendingTripsRecord.length) {
+  //     this.pendingTripsRecord.forEach(tripInfo => {
+  //       destinations.destinations.forEach(destinationInfo => {
+  //         if (tripInfo.destinationID === destinationInfo.id) {
+  //           this.pendingDestinationsRecord.push(destinationInfo)
+  //         }
+  //       })
+  //     })
+  //   }
+  // }
 
 }
 

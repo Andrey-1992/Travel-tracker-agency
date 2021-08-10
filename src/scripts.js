@@ -1,16 +1,14 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
-
 // An example of how you tell webpack to use a CSS (SCSS) file
-import './css/base.scss';
-
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
 // console.log('This is the JavaScript entry file - your code begins here.');
 // --------------------------------------------------------------->>
 
+
 ///--------------- Import Section -----------------------------//
+import './css/base.scss';
+import './images/turing-logo.png'
 import Glide from '@glidejs/glide'
 import Traveler from './classes/Traveler';
 import Trip from './classes/Trip';
@@ -109,12 +107,10 @@ function loginValidation() {
 
 function fetchLoginTraveler(userId) {
   const userIdNum = parseInt(userId.split('er')[1]);
-  logInId = userIdNum;
+  logInId = userIdNum - 1;
 
   const currentTravelerId = fetchCalls.getTravelerData(userIdNum)
-  // .then(data => console.log(data));
   .then(data => currentTravelerLogin = new Traveler(data));
-  // console.log('currentTravelerLogin:', currentTravelerLogin)
 
   fetchAgencyData()
 }
@@ -140,6 +136,12 @@ function showPendingTripsView() {
   hide(pastTripsView);
 }
 
+function returnLogView() {
+  preventDefault();
+  show(loginDashboard);
+  hide(travelerDashboard);
+}
+
 function fetchAgencyData() {
 
   const travelerInfo = fetchCalls.getData('travelers');
@@ -162,7 +164,6 @@ function intializeTravelerData(travelerData) {
     let travelerInfo = new Traveler(traveler)
       agencyRepo.travelers.push(travelerInfo);
   })
-  console.log(agencyRepo);
 }
 
 function storeAgencyData (tripsData, destinationsData) {
@@ -183,10 +184,6 @@ function updateTravelerInfo() {
   hide(loginDashboard);
 
   currentTraveler = agencyRepo.travelers[logInId];
-  console.log(currentTraveler)
-  console.log('currentTravelerLogin:', currentTravelerLogin)
-  currentTravelerLogin.findTrips()
-
   currentTraveler.findTrips();
 
   const greetTraveler = currentTraveler.greetForTraveler();
@@ -197,16 +194,13 @@ function updateTravelerInfo() {
 
 
   let travelerPastTripsInfo = currentTraveler.pastTripsRecord;
-  let travelerPastDestinationInfo = currentTraveler.pastDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, travelerPastDestinationInfo, pastTripsView, agencyRepo);
+  domUpdates.displayTripsCardsInfo(travelerPastTripsInfo, pastTripsView, agencyRepo);
 
   let travelerUpcomingTripsInfo = currentTraveler.upcomingTripsRecord;
-  let travelerUpcomingDestinationInfo = currentTraveler.upcomingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, travelerUpcomingDestinationInfo, upcomingTripsView, agencyRepo);
+  domUpdates.displayTripsCardsInfo(travelerUpcomingTripsInfo, upcomingTripsView, agencyRepo);
 
   let travelerPendingTripsInfo = currentTraveler.pendingTripsRecord;
-  let travelerPendingDestinationInfo = currentTraveler.pendingDestinationsRecord;
-  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, travelerPendingDestinationInfo, pendingTripsView, agencyRepo);
+  domUpdates.displayTripsCardsInfo(travelerPendingTripsInfo, pendingTripsView, agencyRepo);
 }
 
 function submitTripForm() {
@@ -279,12 +273,7 @@ function calculateTripCost() {
   // console.log('tripPercentageAvg:', tripPercentageAvg);
   let totalTripAvg = tripAvg + tripPercentageAvg;
   // console.log('totalTripAvg:', totalTripAvg);
-  const totalTripAvgDom = `Estimated Cost: - Agency Fee $ ${tripPercentageAvg} - Trip Avg $ ${tripAvg} - Total: $ ${totalTripAvg}`
+  const totalTripAvgDom = `Estimated Cost: Agency Fee $ ${tripPercentageAvg} + Trip Avg $ ${tripAvg} = Total: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
-}
-
-function returnLogView() {
-  show(loginDashboard);
-  hide(travelerDashboard);
 }
