@@ -13,6 +13,24 @@
 <body>
   <!-- <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px"> -->
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+
+  <article class="login-form-container" id="loginFormContainer">
+   <form method="get" action="" class="login-form" id="loginForm">
+     <h1 class="login-header">Login</h1>
+     <section class="group">
+       <input type="text" class="login-input" id="userInput"><span class="bar"></span>
+       <label for="" class="login-label"><i class="far fa-user"></i> Account</label>
+     </section>
+     <section class="group">
+       <input type="password" class="login-input" id="passwordInput"><span class="bar"></span>
+       <label for="" class="login-label"><i class="fas fa-key"></i> Password</label>
+     </section>
+     <button type="submit" class="login-button" id="loginButton">Login</button>
+     <p class="warnings" id="warnings"></p>
+   </form>
+ </article>
+
+
   <main>
     <header>
       <section class="agency-logo">
