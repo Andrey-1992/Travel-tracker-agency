@@ -24,6 +24,8 @@ import dayjs from 'dayjs';
 
 
 ///--------------- Queries Section -----------------------------///
+const loginDashboard = document.querySelector('.login-form-container');
+const travelerDashboard = document.querySelector('.traveler-dashboard-view');
 
 let loginFormContainer = document.getElementById('loginFormContainer');
 let loginForm = document.getElementById('loginForm');
@@ -45,7 +47,6 @@ const travelerGreeting = document.getElementById('travelerGreeting');
 const totalSpentInfo = document.getElementById('totalSpentInfo');
 const planningCost = document.getElementById('planningCost');
 
-const travelerDashboard = document.querySelector('.traveler-dashboard-view')
 const travelerInfoSectionView = document.getElementById('travelerGreeting');
 const tripsViewInfoSection = document.getElementById('tripsViewInfoSection');
 const pastTripsView = document.getElementById('pastTripsView');
@@ -68,12 +69,12 @@ const glideTest = document.querySelector('.glide__slides');
 
 
 ///--------------- Event Listeners -----------------------------///
-window.addEventListener("load", fetchAgencyData());
+// window.addEventListener("load", fetchAgencyData());
 loginForm.addEventListener('submit', loginValidation);
 pastTripsBtn.addEventListener('click', showPastTripsView);
 upcomingTripsBtn.addEventListener('click', showUpcomingTripsView);
 pendingTripsBtn.addEventListener('click', showPendingTripsView);
-// logOutBtn.addEventListener('click', returnLogView);
+logOutBtn.addEventListener('click', returnLogView);
 submitFormBtn.addEventListener('click', submitTripForm);
 
 
@@ -84,6 +85,7 @@ let agencyRepo = new Agency();
 let currentDate = dayjs().format('YYYY/MM/DD');
 let currentTraveler;
 let currentTravelerLogin;
+let logInId = 0;
 // let tripIdNum = 200;
 // console.log(agencyRepo)
 // console.log(currentDate)
@@ -120,11 +122,12 @@ function loginValidation() {
 function fetchLoginTraveler(userId) {
   // console.log(typeof userId);
   const userIdNum = parseInt(userId.split('er')[1]);
+  logInId = userIdNum;
   console.log(userIdNum);
 
-  const currentTravelerId = getTravelerData(userIdNum)
+  const currentTravelerId = fetchCalls.getTravelerData(userIdNum)
   .then(data => currentTravelerLogin = new User(data));
-
+  console.log('currentTravelerLogin:', currentTravelerLogin)
 
   fetchAgencyData()
 }
@@ -191,8 +194,12 @@ function storeAgencyData (tripsData, destinationsData) {
 
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
-  currentTraveler = agencyRepo.travelers[7];
+  currentTraveler = agencyRepo.travelers[logInId];
   console.log(currentTraveler)
+
+  show(travelerDashboard);
+  hide(loginDashboard);
+
   updateTravelerInfo(currentTraveler);
 }
 
@@ -314,4 +321,9 @@ function calculateTripCost() {
   const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
+}
+
+function returnLogView() {
+  show(loginDashboard);
+  hide(travelerDashboard);
 }
