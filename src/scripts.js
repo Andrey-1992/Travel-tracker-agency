@@ -206,22 +206,14 @@ function updateTravelerInfo() {
 function submitTripForm() {
 
   preventDefault();
-
   calculateTripCost();
 
-  let destinationInfo = findDestinationInfo();
-  // console.log(destinationInfo);
 
   let tripId = agencyRepo.trips.length + 1;
-  // console.log(typeof tripId);
-
-  const dateInput = dayjs(planningDate.value).format('YYYY/MM/DD');
-  // console.log('dateInput:', dateInput);
-
+  let destinationInfo = findDestinationInfo();
   const noDaysInput = parseInt(planningNoDays.value);
-  // console.log('noDaysInput:', noDaysInput);
-
   const noTravelersInput = parseInt(planningNoTravelers.value);
+  const dateInput = dayjs(planningDate.value).format('YYYY/MM/DD');
 
   let postTripObj = {
     id: tripId,
@@ -233,16 +225,15 @@ function submitTripForm() {
     status: 'pending',
     suggestedActivities: []
   }
-  console.log(postTripObj);
+
+  planningNoDays.value = '';
+  planningNoTravelers.value= '';
+  planningDate.value = '';
+  destinationDropdown.value = '';
 
   fetchCalls.postNewData('trips', postTripObj);
-  // fetchAgencyData();
   agencyRepo.addPendingTrip(postTripObj);
-  // console.log(agencyRepo.trips);
   currentTraveler.updateTripInfo(postTripObj);
-  currentTravelerLogin.updateTripInfo(postTripObj);
-  // console.log(currentTraveler.allTripsRecord);
-
   updateTravelerInfo(currentTraveler)
 }
 
@@ -250,7 +241,6 @@ function submitTripForm() {
 function findDestinationInfo() {
   let destinationInfo ;
   const destinationInput = destinationDropdown.value;
-  // console.log('destinationInput:', destinationInput);
   let findDestinationId = agencyRepo.destinations.forEach(dest => {
     if (dest.destination === destinationInput) {
       destinationInfo = dest;
@@ -268,11 +258,9 @@ function calculateTripCost() {
   let sumCostPerDay = noDaysInput * destinationInfo.estimatedLodgingCostPerDay;
   let sumCostPerPerson = noTravelersInput * destinationInfo.estimatedFlightCostPerPerson;
   let tripAvg = sumCostPerDay + sumCostPerPerson;
-  // console.log('tripAvg:', tripAvg);
   let tripPercentageAvg = tripAvg * .10;
-  // console.log('tripPercentageAvg:', tripPercentageAvg);
   let totalTripAvg = tripAvg + tripPercentageAvg;
-  // console.log('totalTripAvg:', totalTripAvg);
+
   const totalTripAvgDom = `Estimated Cost: Agency Fee $ ${tripPercentageAvg} + Trip Avg $ ${tripAvg} = Total: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
