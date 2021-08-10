@@ -126,8 +126,9 @@ function fetchLoginTraveler(userId) {
   console.log(userIdNum);
 
   const currentTravelerId = fetchCalls.getTravelerData(userIdNum)
-  .then(data => currentTravelerLogin = new User(data));
-  console.log('currentTravelerLogin:', currentTravelerLogin)
+  // .then(data => console.log(data));
+  .then(data => currentTravelerLogin = new Traveler(data));
+  // console.log('currentTravelerLogin:', currentTravelerLogin)
 
   fetchAgencyData()
 }
@@ -170,14 +171,15 @@ function fetchAgencyData() {
 function initializedData(travelerData, tripsData, destinationsData) {
   Promise.resolve(intializeTravelerData(travelerData))
   .then(storeAgencyData(tripsData, destinationsData))
-  .then(updatePageInfo());
+  .then(updateTravelerInfo());
 }
 
 function intializeTravelerData(travelerData) {
   travelerData.travelers.forEach(traveler => {
     let travelerInfo = new Traveler(traveler)
-    agencyRepo.travelers.push(travelerInfo);
+      agencyRepo.travelers.push(travelerInfo);
   })
+  console.log(agencyRepo);
 }
 
 function storeAgencyData (tripsData, destinationsData) {
@@ -195,18 +197,27 @@ function storeAgencyData (tripsData, destinationsData) {
 function updatePageInfo() {
   // Here is where I pass the value of the log in, and select that user !
   currentTraveler = agencyRepo.travelers[logInId];
-  console.log(currentTraveler)
+  // console.log(currentTraveler)
+  // console.log('currentTravelerLogin:', currentTravelerLogin)
 
   show(travelerDashboard);
   hide(loginDashboard);
 
-  updateTravelerInfo(currentTraveler);
+  // updateTravelerInfo(currentTraveler);
 }
 
-function updateTravelerInfo(currentTraveler) {
+function updateTravelerInfo() {
+
+  show(travelerDashboard);
+  hide(loginDashboard);
+
+  currentTraveler = agencyRepo.travelers[logInId];
+  console.log(currentTraveler)
+  console.log('currentTravelerLogin:', currentTravelerLogin)
+  currentTravelerLogin.findTrips()
 
   currentTraveler.findTrips();
-  currentTraveler.matchDestinationsAndTrips(agencyRepo);
+  // currentTraveler.matchDestinationsAndTrips(agencyRepo);
 
   // pastTripsView.innerHTML = '';
   // upcomingTripsView.innerHTML = '';
@@ -288,14 +299,21 @@ function submitTripForm() {
   console.log(postTripObj);
 
   fetchCalls.postNewData('trips', postTripObj);
-  fetchAgencyData();
+  // fetchAgencyData();
+  agencyRepo.addPendingTrip(postTripObj);
+  // console.log(agencyRepo.trips);
+  currentTraveler.updateTripInfo(postTripObj);
+  currentTravelerLogin.updateTripInfo(postTripObj);
+  // console.log(currentTraveler.allTripsRecord);
+
+  updateTravelerInfo(currentTraveler)
 }
 
 
 function findDestinationInfo() {
   let destinationInfo ;
   const destinationInput = destinationDropdown.value;
-  console.log('destinationInput:', destinationInput);
+  // console.log('destinationInput:', destinationInput);
   let findDestinationId = agencyRepo.destinations.forEach(dest => {
     if (dest.destination === destinationInput) {
       destinationInfo = dest;
@@ -313,12 +331,12 @@ function calculateTripCost() {
   let sumCostPerDay = noDaysInput * destinationInfo.estimatedLodgingCostPerDay;
   let sumCostPerPerson = noTravelersInput * destinationInfo.estimatedFlightCostPerPerson;
   let tripAvg = sumCostPerDay + sumCostPerPerson;
-  console.log('tripAvg:', tripAvg);
+  // console.log('tripAvg:', tripAvg);
   let tripPercentageAvg = tripAvg * .10;
-  console.log('tripPercentageAvg:', tripPercentageAvg);
+  // console.log('tripPercentageAvg:', tripPercentageAvg);
   let totalTripAvg = tripAvg + tripPercentageAvg;
-  console.log('totalTripAvg:', totalTripAvg);
-  const totalTripAvgDom = `Estimated Cost: $ ${totalTripAvg}`
+  // console.log('totalTripAvg:', totalTripAvg);
+  const totalTripAvgDom = `Estimated Cost: - Agency Fee $ ${tripPercentageAvg}, - Trip Avg $ ${tripAvg}, total: $ ${totalTripAvg}`
 
   domUpdates.displayTravelerInfo(totalTripAvgDom, planningCost);
 }

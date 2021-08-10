@@ -4,6 +4,9 @@ class Agency {
     this.trips =  [];
     this.destinations = [];
   }
+  addPendingTrip(newTrip) {
+    this.trips.push(newTrip)
+  }
 }
 
 export default Agency;
