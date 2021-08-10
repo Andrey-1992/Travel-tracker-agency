@@ -78,8 +78,7 @@ main {
   pointer-events: none;
 }
 
-.login-input:focus~.login-label,
-.login-input:valid~.login-label {
+.login-input:focus~.login-label {
   top: -14px;
   font-size: 12px;
   color: #2196f3;
@@ -107,7 +106,7 @@ main {
 }
 
 .login-button {
-  font-family: "Roboto";
+  font-family: $roboto-font-family;
   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
   background: linear-gradient(to right, #B06AB3, #4568DC);
   border: none;
@@ -143,7 +142,7 @@ main {
 
 //// Header Section ////////////////////////
 header {
-  border: solid black 2px;
+  // border: $border-color 2px;
   grid-column-start: 1;
   grid-column-end: span 3;
   display: grid;
@@ -156,7 +155,7 @@ header {
 }
 
 .agency-logo {
-  border: solid black 2px;
+  // border: solid black 2px;
   grid-column-start: 1;
   grid-column-end: 2;
   display: grid;
@@ -182,7 +181,7 @@ h1 {
 }
 
 .log-out-section {
-  border: solid black 2px;
+  // border: solid black 2px;
   grid-column-start: 3;
   grid-column-end: 4;
   display: inline-flex;
@@ -211,7 +210,8 @@ h1 {
 /////////////ASIDE SECTION /////////////////////////
 
 aside {
-  border: solid black 2px;
+  border: $border-color 1px;
+  border-radius: 5%;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
@@ -226,7 +226,7 @@ h2 {
   grid-row-start: 1;
   grid-row-end: 2;
   font-family: $cursive-handle-font-family;
-  font-size: 255%;
+  font-size: 200%;
   margin-bottom: 0;
 }
 
@@ -235,6 +235,7 @@ h3 {
   font-family: $cursive-handle-font-family;
   font-size: 115%;
   margin-top: 1%;
+  margin-bottom: 0;
 }
 
 h4 {
@@ -244,6 +245,18 @@ h4 {
 button {
   font-family: $roboto-font-family;
   color: $primary-background;
+  background:$buttons-color;
+  border: none;
+  border-radius: 4%;
+  // border-color: rgba(17, 77, 120, 0.67);
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  // opacity: 0.7%;
 }
 
 p {
@@ -257,6 +270,7 @@ p {
 }
 
 .trips-views-btns {
+  margin: 0;
   grid-row-start: 3;
   grid-row-end: 4;
   display: grid;
@@ -268,6 +282,7 @@ p {
   grid-column-end: 3;
   width: 150%;
   height: 70%;
+  font-size: 80%;
 }
 
 .upcoming-trips-btn {
@@ -275,6 +290,7 @@ p {
   grid-column-end: 5;
   width: 130%;
   height: 70%;
+  font-size: 80%;
 }
 
 .pending-trips-btn {
@@ -282,11 +298,13 @@ p {
   grid-column-end: 7;
   width: 150%;
   height: 70%;
+  font-size: 80%;
 }
 
 /////////////FORM SECTION /////////////////////////
 .trip-form-section {
-  border: solid black 2px;
+  border: solid black 1px;
+  border-radius: 5%;
   grid-column-start: 2;
   grid-column-end: span 2;
   grid-row-start: 2;
@@ -363,15 +381,18 @@ p {
 
 .planning-cost {
   text-align: center;
-  font-size: 135%;
+  font-size: 105%;
   margin-top: 2%;
 }
 
+.submit-form-btn {
+  width: 100%;
+}
 
 
 /////////////TRIPS CARDS SECTION /////////////////////////
 .trips-view-info-section{
-  border: solid black 2px;
+  border: $border-color 2px;
   grid-column-start: 1;
   grid-column-end: span 3;
   grid-row-start: 7;
