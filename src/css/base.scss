@@ -1,7 +1,5 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables';
-@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
-// @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 
 body {
   background: $primary-background;
@@ -20,10 +18,7 @@ main {
 }
 
 
-
-
 ///// LOGIN Form Section ------------------------------->
-
 
 .login-form-container {
   height: 650px;
@@ -78,8 +73,7 @@ main {
   pointer-events: none;
 }
 
-.login-input:focus~.login-label,
-.login-input:valid~.login-label {
+.login-input:focus~.login-label {
   top: -14px;
   font-size: 12px;
   color: #2196f3;
@@ -107,7 +101,7 @@ main {
 }
 
 .login-button {
-  font-family: "Roboto";
+  font-family: $roboto-font-family;
   background: -webkit-linear-gradient(to right, #B06AB3, #4568DC);
   background: linear-gradient(to right, #B06AB3, #4568DC);
   border: none;
@@ -135,15 +129,13 @@ main {
   padding-top: 20px;
 }
 
-
-
 // -------------------------------------------------------->
 
 
 
 //// Header Section ////////////////////////
 header {
-  border: solid black 2px;
+  // border: $border-color 2px;
   grid-column-start: 1;
   grid-column-end: span 3;
   display: grid;
@@ -156,7 +148,6 @@ header {
 }
 
 .agency-logo {
-  border: solid black 2px;
   grid-column-start: 1;
   grid-column-end: 2;
   display: grid;
@@ -177,12 +168,9 @@ h1 {
   font-size: 250%;
   font-family:$cursive-marker-font-family;
   color: $white-smoke-color;
-  // padding-left: -5%;
-  // margin: 0;
 }
 
 .log-out-section {
-  border: solid black 2px;
   grid-column-start: 3;
   grid-column-end: 4;
   display: inline-flex;
@@ -202,7 +190,6 @@ h1 {
   font-size: 120%;
   font-family: $cursive-handle-font-family;
   color: $white-smoke-color;
-  // padding: 0;
   margin: auto;
 }
 
@@ -211,7 +198,8 @@ h1 {
 /////////////ASIDE SECTION /////////////////////////
 
 aside {
-  border: solid black 2px;
+  border: $border-color 1px;
+  border-radius: 5%;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
@@ -226,7 +214,7 @@ h2 {
   grid-row-start: 1;
   grid-row-end: 2;
   font-family: $cursive-handle-font-family;
-  font-size: 255%;
+  font-size: 200%;
   margin-bottom: 0;
 }
 
@@ -235,6 +223,7 @@ h3 {
   font-family: $cursive-handle-font-family;
   font-size: 115%;
   margin-top: 1%;
+  margin-bottom: 0;
 }
 
 h4 {
@@ -244,6 +233,16 @@ h4 {
 button {
   font-family: $roboto-font-family;
   color: $primary-background;
+  background:$buttons-color;
+  border: none;
+  border-radius: 4%;
+  display: block;
+  width: 60%;
+  margin: 10px auto;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 p {
@@ -257,6 +256,7 @@ p {
 }
 
 .trips-views-btns {
+  margin: 0;
   grid-row-start: 3;
   grid-row-end: 4;
   display: grid;
@@ -268,6 +268,7 @@ p {
   grid-column-end: 3;
   width: 150%;
   height: 70%;
+  font-size: 80%;
 }
 
 .upcoming-trips-btn {
@@ -275,6 +276,7 @@ p {
   grid-column-end: 5;
   width: 130%;
   height: 70%;
+  font-size: 80%;
 }
 
 .pending-trips-btn {
@@ -282,11 +284,13 @@ p {
   grid-column-end: 7;
   width: 150%;
   height: 70%;
+  font-size: 80%;
 }
 
 /////////////FORM SECTION /////////////////////////
 .trip-form-section {
-  border: solid black 2px;
+  border: solid black 1px;
+  border-radius: 5%;
   grid-column-start: 2;
   grid-column-end: span 2;
   grid-row-start: 2;
@@ -348,7 +352,6 @@ p {
 }
 
 .instructions-header-text {
-  // margin: 0;
   font-size: 155%;
   font-family: $cursive-marker-font-family;
   margin-bottom: 0;
@@ -358,20 +361,21 @@ p {
   text-align: center;
   font-size: 125%;
   margin-bottom: 1%;
-  // font-family: $cursive-handle-font-family;
 }
 
 .planning-cost {
   text-align: center;
-  font-size: 135%;
+  font-size: 105%;
   margin-top: 2%;
 }
 
+.submit-form-btn {
+  width: 100%;
+}
 
 
 /////////////TRIPS CARDS SECTION /////////////////////////
 .trips-view-info-section{
-  border: solid black 2px;
   grid-column-start: 1;
   grid-column-end: span 3;
   grid-row-start: 7;
@@ -379,67 +383,219 @@ p {
   font-family: $lato-font-family;
 }
 
-img {
-  width: 15%;
-  height: 11%;
-}
-
-.trips-view-info-section {
-  // margin: 0;
-  // padding: 0;
-  // box-sizing: border-box;
-  // This code affects glide styling
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-// Posibilty to refactor this design styles code !!
 .past-trips-view {
-  // border: solid black 2px;
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50% , -50%);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
 }
 
 .upcoming-trips-view {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50% , -50%);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
 }
 
 .pending-trips-view {
-  // position: absolute;
-  // top: 50%;
-  // left: 50%;
-  // transform: translate(-50% , -50%);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
 }
 
 .trips-cards {
-  border: solid black 5px;
+  border: $buttons-color 1px;
   text-align: center;
-}
-
-.no-trips-msg {
-
 }
 
 .carousel-item {
   padding: 0;
-  // border: solid black 5px;
-  // text-align: center;
-  // font-size: 95%;
+  border: $border-color 3px;
+  opacity: 0.7;
+}
+
+.carousel-item:hover {
+  cursor: pointer;
+  opacity: 1;
+  width: 120%;
+  height: 105%;
 }
 
 .card-headers  {
-  margin: 1%;
+  margin: 5%;
 }
 
 .card-text {
-  font-size: 85%;
+  font-size: 95%;
+}
+
+img {
+  width: 100%;
+  height: 100%;
 }
 
 .hidden {
   display: none;
+}
+
+///// Media Queries --------------------------------->
+
+/* 1024px | Desktop View */
+@media only screen and (min-width: 1024px) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(15, 1fr);
+    grid-gap: 1%;
+    color: $white-smoke-color;
+  }
+
+  header {
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  aside {
+    border: $border-color 1px;
+    border-radius: 5%;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: span 5;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1%;
+  }
+
+  .trip-form-section {
+    border: solid black 1px;
+    border-radius: 5%;
+    grid-column-start: 2;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    grid-row-end: span 5;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1%;
+  }
+
+  .trips-view-info-section{
+    grid-column-start: 1;
+    grid-column-end: span 3;
+    grid-row-start: 7;
+    grid-row-end: span 9;
+    font-family: $lato-font-family;
+  }
+
+}
+
+
+/* 320px to 600px | Mobile Devices */
+@media only screen and (min-width: 320px) and (max-width: 600px) {
+  main {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(20, 1fr);
+    grid-gap: 1%;
+    color: $white-smoke-color;
+  }
+
+  header {
+    grid-column-start: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  aside {
+    border: $border-color 1px;
+    border-radius: 5%;
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: span 5;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1%;
+  }
+
+  .trip-form-section {
+    border: solid black 1px;
+    border-radius: 5%;
+    grid-column-start: 1;
+    grid-row-start: 7;
+    grid-row-end: span 5;
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 1%;
+  }
+
+  .form-instructions {
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .form-fill {
+    grid-row-start: 2;
+    grid-row-end: span 2;
+    padding: 0;
+    font-family: $cursive-marker-font-family;
+  }
+
+  .form-planning-inputs {
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-gap: 1%;
+  }
+
+  .date-form-section {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 1;
+    grid-row-end: 2;
+  }
+
+  .destination-form-section {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 2;
+    grid-row-end: 3;
+  }
+
+  .days-form-section {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 3;
+    grid-row-end: 4;
+  }
+
+  .persons-form-section {
+    display: flex;
+    flex-direction: column;
+    grid-row-start: 4;
+    grid-row-end: 5;
+  }
+
+  .planning-bottom {
+    grid-row-start: 5;
+    grid-row-end: 6;
+  }
+
+  .trips-view-info-section{
+    grid-column-start: 1;
+    grid-row-start: 12;
+    grid-row-end: span 9;
+    font-family: $lato-font-family;
+  }
 }

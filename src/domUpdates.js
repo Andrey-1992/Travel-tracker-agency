@@ -21,10 +21,6 @@ const domUpdates = {
         `
         <div class="trips-cards">
 
-          <button aria-label="Before" class="before-arrow">
-          <i class="fas fa-chevron-left"></i>
-          </button>
-
           <div class="carousel-list">
             <div class="carousel-item">
               <img src="${findDest.image}" alt="${findDest.alt}">
@@ -40,9 +36,6 @@ const domUpdates = {
             </div>
           </div>
 
-          <button aria-label="After" class="after-arrow">
-          <i class="fas fa-chevron-right"></i>
-          </button>
         </div>
 
         <div role="tablist" class="carousel-indicators"></div>
