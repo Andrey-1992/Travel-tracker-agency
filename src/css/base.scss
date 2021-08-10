@@ -1,12 +1,12 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
+@import 'variables';
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
 // @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
 
 body {
   background: $primary-background;
   margin: 0;
+  font-family: $lato-font-family;
 }
 
 main {
@@ -16,6 +16,7 @@ main {
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(15, 1fr);
   grid-gap: 1%;
+  color: $white-smoke-color;
 }
 
 
@@ -29,6 +30,11 @@ header {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.logo-img {
+  width: 100px;
+  height: 100px;
+}
+
 .agency-logo {
   border: solid black 2px;
   grid-column-start: 1;
@@ -40,13 +46,19 @@ header {
 .logo-img {
   grid-column-start: 1;
   grid-column-end: 2;
+  padding-left: 15%;
 }
 
 h1 {
   grid-column-start: 2;
   grid-column-end: 4;
-  padding-top: 7%;
+  margin-bottom: 0;
+  margin-top: 5%;
+  font-size: 250%;
+  font-family:$cursive-marker-font-family;
+  color: $white-smoke-color;
   // padding-left: -5%;
+  // margin: 0;
 }
 
 .log-out-section {
@@ -67,6 +79,11 @@ h1 {
 
 .agency-slogan {
   padding-bottom: 0%;
+  font-size: 120%;
+  font-family: $cursive-handle-font-family;
+  color: $white-smoke-color;
+  // padding: 0;
+  margin: auto;
 }
 
 
@@ -88,6 +105,28 @@ h2 {
   text-align: center;
   grid-row-start: 1;
   grid-row-end: 2;
+  font-family: $cursive-handle-font-family;
+  font-size: 255%;
+  margin-bottom: 0;
+}
+
+h3 {
+  text-align: center;
+  font-family: $cursive-handle-font-family;
+  font-size: 115%;
+  margin-top: 1%;
+}
+
+h4 {
+  font-family: $cursive-handle-font-family;
+}
+
+button {
+  font-family: $roboto-font-family;
+}
+
+p {
+  margin: 0;
 }
 
 .total-spent-info {
@@ -136,20 +175,22 @@ h2 {
   grid-gap: 1%;
 }
 
-.from-instructions {
+.form-instructions {
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 .form-fill {
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: span 2;
+  padding: 0;
+  font-family: $cursive-marker-font-family;
 }
 
 .form-planning-inputs {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 3%;
+  grid-template-columns: repeat(12, 1fr);
+  // grid-gap: 2%;
 }
 
 .date-form-section {
@@ -162,35 +203,47 @@ h2 {
 .destination-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-start: 4;
+  grid-column-end: 5;
 }
 
 .days-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column-start: 6;
+  grid-column-end: 7;
 }
 
 .persons-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 5;
-  grid-column-end: 6;
+  grid-column-start: 8;
+  grid-column-end: 9;
 }
 
 .planning-bottom {
-  grid-column-start: 6;
-  grid-column-end: 8;
+  grid-column-start: 10;
+  grid-column-end: 11;
+}
+
+.instructions-header-text {
+  // margin: 0;
+  font-size: 155%;
+  font-family: $cursive-marker-font-family;
+  margin-bottom: 0;
 }
 
 .planning-text {
   text-align: center;
+  font-size: 125%;
+  margin-bottom: 1%;
+  // font-family: $cursive-handle-font-family;
 }
 
 .planning-cost {
   text-align: center;
+  font-size: 135%;
+  margin-top: 2%;
 }
 
 
@@ -202,6 +255,12 @@ h2 {
   grid-column-end: span 3;
   grid-row-start: 7;
   grid-row-end: span 9;
+  font-family: $lato-font-family;
+}
+
+img {
+  width: 15%;
+  height: 11%;
 }
 
 .trips-view-info-section {
@@ -237,12 +296,27 @@ h2 {
 }
 
 .trips-cards {
-  border: solid black 2px;
+  border: solid black 5px;
   text-align: center;
 }
 
 .no-trips-msg {
 
+}
+
+.carousel-item {
+  padding: 0;
+  // border: solid black 5px;
+  // text-align: center;
+  // font-size: 95%;
+}
+
+.card-headers  {
+  margin: 1%;
+}
+
+.card-text {
+  font-size: 85%;
 }
 
 .hidden {

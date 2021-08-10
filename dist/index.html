@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Traveler's dashboard !">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Lato&family=Permanent+Marker&family=Roboto&display=swap" rel="stylesheet">
   <title>Webpack Starter Kit</title>
 </head>
 <body>
@@ -12,7 +16,7 @@
   <main>
     <header>
       <section class="agency-logo">
-        <img class="logo-img" src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+        <img class="logo-img" src="./images/turing-logo.png" alt="turing logo">
         <h1>ravel Agency</h1>
       </section>
       <section class="log-out-section">
@@ -23,7 +27,7 @@
 
     <aside id="travelerInfoSectionView">
       <h2 id="travelerGreeting"></h2>
-      <h4 id="totalSpentInfo" class="total-spent-info"></h4>
+      <h3 id="totalSpentInfo" class="total-spent-info"></h3>
       <section class="trips-views-btns">
         <button type="button" id="pastTripsBtn" class="past-trips-btn">Past Trips</button>
         <button type="button" id="upcomingTripsBtn" class="upcoming-trips-btn">Upcoming Trips</button>
@@ -32,20 +36,21 @@
     </aside>
 
     <article class="trip-form-section">
-      <section class="from-instructions">
-        <h2 class="instructions-header-text">Plan a trip !</h2>
+      <section class="form-instructions">
+        <h3 class="instructions-header-text">Plan a trip !</h3>
       </section>
       <section class="form-fill">
         <p class="planning-text">Please select a destination and  date for your new trip:</p>
+        <p class="post-error-field"></p>
         <form class="planning-form" method="post">
             <div class="form-planning-inputs">
               <div class="date-form-section">
-                <label for="planning-date">Start Date</label>
-                <input id="planningDate" class="planning-date" type="date" name="start-date" value="" required>
+                <label for="planningDate">Start Date</label>
+                <input id="planningDate" class="planning-date" type="date" name="start-date" value="" aria-label="Calendar" required>
               </div>
               <div class="destination-form-section">
-                <label for="planning-destination">Destination</label>
-                <select id="destinationDropdown" class="destination-dropdown" name="planning-destination">
+                <label for="destinationDropdown">Destination</label>
+                <select id="destinationDropdown" class="destination-dropdown" name="planning-destination" aria-label="Dropdown List">
                   <option value="Lima, Peru">Lima, Peru</option>
                   <option value="Stockholm, Sweden">Stockholm, Sweden</option>
                   <option value="Sydney, Austrailia">Sydney, Austrailia</option>
@@ -99,21 +104,21 @@
                 </select>
               </div>
               <div class="days-form-section">
-                <label for="planning-duration"># Days</label>
-                <input type="number" id="planningNoDays" class="planning-#-days" name="planning-duration" placeholder="How many ?" required></input>
+                <label for="planningNoDays"># Days</label>
+                <input type="number" id="planningNoDays" class="planning-no-days" name="planning-duration" placeholder="How many ?" aria-label="Number of days"required></input>
               </div>
               <div class="persons-form-section">
-                <label for="planning-travelers"># Travelers</label>
-                <input type="number" id="planningNoTravelers" class="planning-#-travelers" name="planning-travelers" placeholder="How many ?" required></input>
+                <label for="planningNoTravelers"># Travelers</label>
+                <input type="number" id="planningNoTravelers" class="planning-no-travelers" name="planning-travelers" placeholder="How many ?" aria-label="Number of Travelers" required></input>
               </div>
               <div class="planning-bottom">
                 <p></p>
-                <button id="submitFormBtn" class="submit-form-btn" form="planning-form" type="button" name="button">Add Trips</button>
+                <button id="submitFormBtn" class="submit-form-btn" form="planning-form" type="button" name="button">Submit</button>
               </div>
             </div>
           </form>
           <h4 id="planningCost" class="planning-cost">Estimated Cost: $ 0.00</h4>
-      <section>
+      </section>
     </article>
 
     <article id="tripsViewInfoSection" class="trips-view-info-section">
