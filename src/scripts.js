@@ -112,8 +112,16 @@ function loginValidation() {
     warnings.innerText += '';
     warnings.innerText += 'Invalid Username!';
   } else {
-    fetchLoginUser(userInput.value);
+    fetchLoginTraveler(userInput.value);
   }
+}
+
+function fetchLoginTraveler(userId) {
+  // console.log(typeof userId);
+  const userIdNum = parseInt(userId.split('er')[1]);
+  console.log(userIdNum);
+
+  // fetchAgencyData()
 }
 
 function showPastTripsView() {
