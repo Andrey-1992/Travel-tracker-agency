@@ -7,6 +7,13 @@ const fetchCalls = {
       .catch((error) => this.displayErrorMessage(error));
   },
 
+  getTravelerData(idNum) {
+    return fetch(`http://localhost:3001/api/v1/travelers/${idNum}`)
+      .then(response => response.json())
+      // .then(data => data)
+      .catch((error) => this.displayErrorMessage(error));
+  },
+
   postNewData(endPoint, body) {
     return fetch(`http://localhost:3001/api/v1/${endPoint}`, {
       method: 'POST',
