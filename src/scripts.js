@@ -138,6 +138,9 @@ function showPendingTripsView() {
 
 function returnLogView() {
   preventDefault();
+
+  passwordInput.value = '';
+  userInput.value = '';
   show(loginDashboard);
   hide(travelerDashboard);
 }
