@@ -18,19 +18,21 @@ The primary goal of Travel Tracker App is to help travelers plan their future tr
 * [Responsive Design](#responsive-design)
 
 ### Login Screen
-![Login View](<img width="1275" alt="Travel-Tracker-Login-view" src="https://user-images.githubusercontent.com/78002374/128927277-4c5e9a3a-919a-4661-8b31-b1dca329ac80.png">)
+<img width="1275" alt="Travel-Tracker-Login-view" src="https://user-images.githubusercontent.com/78002374/128928725-464cfbc8-a188-4c5e-9a58-5408549b5dac.png">
+
 
 <details>
   <Summary>Login Form</summary>
-  When first arriving at the site, a user should be able to log in with a username and password.
-  - username: traveler(Choose a number from **1** to **50**)
-  - password: travel
+  * When first arriving at the site, a user should be able to log in with a username and password.
+  * username: traveler(Choose a number from 1 to 50)
+  * password: travel
 </details>
 
 ### Traveler Dashboard
 When a traveler visits their dashboard, they will see a welcome message with their name, as well as the amounts they've spent on trips for the previous year and this year. The user will also be able to see a form for creating a new trip, as well as all of their previous, current, and pending trips.
 
-![image](<img width="1284" alt="Screen Shot 2021-08-10 at 3 10 15 PM" src="https://user-images.githubusercontent.com/78002374/128928315-39af6e75-2253-460e-b66d-9095d7e41c70.png">)
+<img width="1284" alt="Screen Shot 2021-08-10 at 3 10 15 PM" src="https://user-images.githubusercontent.com/78002374/128928807-4ff9c2b0-7160-49d7-a7d1-78e100fc0a2c.png">
+
 
 ### Responsive Design
 This application has responsive design for a *Desktop* $ *Mobile* devices:
