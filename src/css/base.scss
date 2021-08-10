@@ -29,6 +29,11 @@ header {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.logo-img {
+  width: 100px;
+  height: 100px;
+}
+
 .agency-logo {
   border: solid black 2px;
   grid-column-start: 1;
@@ -40,13 +45,15 @@ header {
 .logo-img {
   grid-column-start: 1;
   grid-column-end: 2;
+  padding-left: 15%;
 }
 
 h1 {
   grid-column-start: 2;
   grid-column-end: 4;
-  padding-top: 7%;
+  padding-top: 5%;
   // padding-left: -5%;
+  // margin: 0;
 }
 
 .log-out-section {
@@ -140,20 +147,20 @@ h3 {
   grid-gap: 1%;
 }
 
-.from-instructions {
+.form-instructions {
   grid-row-start: 1;
   grid-row-end: 2;
 }
 
 .form-fill {
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: span 2;
 }
 
 .form-planning-inputs {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 3%;
+  grid-template-columns: repeat(12, 1fr);
+  // grid-gap: 2%;
 }
 
 .date-form-section {
@@ -166,27 +173,27 @@ h3 {
 .destination-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 3;
-  grid-column-end: 4;
+  grid-column-start: 4;
+  grid-column-end: 5;
 }
 
 .days-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 4;
-  grid-column-end: 5;
+  grid-column-start: 6;
+  grid-column-end: 7;
 }
 
 .persons-form-section {
   display: flex;
   flex-direction: column;
-  grid-column-start: 5;
-  grid-column-end: 6;
+  grid-column-start: 8;
+  grid-column-end: 9;
 }
 
 .planning-bottom {
-  grid-column-start: 6;
-  grid-column-end: 8;
+  grid-column-start: 10;
+  grid-column-end: 11;
 }
 
 .planning-text {
@@ -211,11 +218,6 @@ h3 {
 img {
   width: 15%;
   height: 11%;
-}
-
-.logo-img {
-  width: 100px;
-  height: 100px;
 }
 
 .trips-view-info-section {
