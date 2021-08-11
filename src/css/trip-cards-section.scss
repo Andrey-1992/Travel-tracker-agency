@@ -1,0 +1,65 @@
+.trips-view-info-section {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  grid-row-start: 7;
+  grid-row-end: span 9;
+  font-family: $lato-font-family;
+}
+
+.past-trips-view {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+.upcoming-trips-view {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+.pending-trips-view {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 2%;
+  margin-top: 5%;
+  margin-left: 15%;
+}
+
+  .trips-cards {
+    border: $buttons-color 1px;
+    text-align: center;
+  }
+
+  .carousel-item {
+      padding: 0;
+      border: $border-color 3px;
+      opacity: 0.7;
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+        width: 120%;
+        height: 105%;
+      }
+    }
+
+  .card-headers  {
+    margin: 5%;
+  }
+
+  .card-text {
+    font-size: 95%;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
