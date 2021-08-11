@@ -40,13 +40,13 @@ One of the future additions to this app should now support two different types o
 - View their names, a list of all of their trips, and the total amount they’ve spent (including 10% agent cut)
 
 ## Technologies
-  * JavaScript
-  * GitHub
-  * HTML
-  * CSS/SCSS
-  * Dependencies
-  * Fetch
-  * Webpack
+<p align="left">
+  <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=for-the-badge&logo=javascript&logoColor=%23F7DF1E" alt="javascript" />
+  <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white" alt="html5"/>
+  <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white" alt="CSS3"/>
+  <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" alt="Github" />
+  <img src="https://dyclassroom.com/image/topic/mochajs-chaijs/logo.png" height"80px" width="90px"alt=" "Mocha & Chai"/>
+</p>
 
 ## Set up
 * On the top right corner of this page, click the **Fork** button.
